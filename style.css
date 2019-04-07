@@ -4,7 +4,7 @@ body, html {
 }
 .bg {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.45)),
-	url(./images/background.jpg);
+	url(./images/main_background.png);
 
 	height:100%;
 
@@ -20,6 +20,48 @@ body, html {
 	/*Flexbox layout in basic settings is side-by-side, should change it to "column-based"*/
 	flex-direction: column;
 	vertical-align: top;
+}
+
+.bg_member {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)),
+	url(./images/members_photo_dark.jpg);
+
+	height:100%;
+
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	/*Using flexbox property*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	/*Flexbox layout in basic settings is side-by-side, should change it to "column-based"*/
+	flex-direction: column;
+	vertical-align: top;
+	text-align: center;
+}
+
+.bg-events {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)),
+	url(./images/career_lab.jpg);
+
+	height:100%;
+
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	/*Using flexbox property*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	/*Flexbox layout in basic settings is side-by-side, should change it to "column-based"*/
+	flex-direction: column;
+	vertical-align: top;
+	text-align: center;
 }
 
 /*Displays image fully*/
@@ -148,10 +190,17 @@ body, html {
 	text-align: center;
 }
 
+#member {
+	display: flex;
+	align-items: center;
+	vertical-align: top;
+
+	flex-direction: column;
+}
+
 @font-face {
 	font-family: 'Aileron';
-	src:url("rsc/Aileron-ultralight.eot") format('embedded-opentype'),
-	url(./rsc/aileronultralight.otf) format('opentype');
+	src:url(./rsc/aileronultralight.otf) format('opentype');
 }
 
 /* nav-bar css*/
