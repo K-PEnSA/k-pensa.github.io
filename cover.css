@@ -1,0 +1,49 @@
+/*
+ * Globals
+ */
+:root {
+  --pensa-red: #BE1E2D;
+  --pensa-blue: #232E65;
+  --pensa-grey: #414042;
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+
+/*
+ * Base structure
+ */
+
+
+.cover-container {
+  max-width: 42em;
+}
+
+
+
+/*
+* About.html Numbers
+*/
+.large-bebas-neue {
+  font-size: 200px;
+  font-family: 'Bebas Neue', sans-serif;;
+}
+
+.pensa-red {
+  color: var(--pensa-red);
+}
+
+.pensa-blue {
+  color: var(--pensa-blue);
+}
+
+.pensa-grey {
+  color: var(--pensa-grey);
+}
+
