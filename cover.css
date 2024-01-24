@@ -47,3 +47,13 @@
   color: var(--pensa-grey);
 }
 
+footer {
+  margin-top: 200px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: large;
+  border-top: solid 2px var(--pensa-grey);
+}
+
+
