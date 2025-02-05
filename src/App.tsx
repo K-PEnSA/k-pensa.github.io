@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "./assets/logo.svg";
 import "./App.css";
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
   NavLink,
@@ -152,9 +152,9 @@ const App = () => {
 };
 
 const WrappedApp = () => (
-  <BrowserRouter>
+  <HashRouter>
     <App />
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default WrappedApp;
