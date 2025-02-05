@@ -31,7 +31,6 @@ const Router = () => {
 };
 
 const App = () => {
-  return Maintenance;
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(true); // State to control navbar visibility
   const [lastScrollY, setLastScrollY] = useState(0); // To track the last scroll position
@@ -142,7 +141,7 @@ const App = () => {
 
 const WrappedApp = () => (
   <BrowserRouter>
-    <App />
+    <Maintenance />
   </BrowserRouter>
 );
 
