@@ -16,6 +16,7 @@ import About from "./About";
 import Footer from "./Footer";
 import ScrollToTop from "./ScrollToTop";
 import GoBackButton from "./GoBackButton";
+import Maintenance from "./Maintenance";
 
 const Router = () => {
   return (
@@ -30,6 +31,7 @@ const Router = () => {
 };
 
 const App = () => {
+  return Maintenance;
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(true); // State to control navbar visibility
   const [lastScrollY, setLastScrollY] = useState(0); // To track the last scroll position
