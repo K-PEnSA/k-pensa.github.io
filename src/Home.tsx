@@ -27,7 +27,7 @@ const Header = () => {
         className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0"
       >
         <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLScZBjyvGFNOOhyTszx3tP_h--rjUrwrXml1LbCI4uNxiS6Vpg/viewform"
+          href="https://pennclubs.com/club/korea-penn-engineers-and-scientists-association"
           target="_blank"
           className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-pensa-blue-70 hover:bg-pensa-blue-100"
         >

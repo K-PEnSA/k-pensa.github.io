@@ -68,7 +68,7 @@ const App = () => {
   // Example: Set `isUnderMaintenance` based on some condition
   useEffect(() => {
     // You can fetch the status from an API or set it based on a time check
-    setIsUnderMaintenance(true); // Set to true when the site is under maintenance
+    setIsUnderMaintenance(false); // Set to true when the site is under maintenance
   }, []);
 
   return (

@@ -133,7 +133,7 @@ const Board = () => {
             Behind all our events stands the dedicated PEnSA family.
           </p>
         </div>
-        <div className="py-4 px-4 mx-auto font-light text-center max-w-screen-l lg:py-8 lg:px-6">
+        <div className="py-4 px-4 mx-auto text-center max-w-screen-l lg:py-8 lg:px-6">
           <p className="text-base/7 text-gray-700">
             PEnSA board functions as the governing body of K-PEnSA. Our
             community wouldn't exist without the hard work and commitment of our
