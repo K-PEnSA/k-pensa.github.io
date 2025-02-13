@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.de2f8637.css",
-    "main.js": "/static/js/main.0706d623.js",
+    "main.css": "/static/css/main.4a643a21.css",
+    "main.js": "/static/js/main.6c68c70a.js",
     "static/js/453.8138dc98.chunk.js": "/static/js/453.8138dc98.chunk.js",
     "static/media/KSEA1.png": "/static/media/KSEA1.a3561d10182d50a4baae.png",
     "static/media/Professional-Headshot.png": "/static/media/Professional-Headshot.3dcb58143bc29416a333.png",
+    "static/media/skating.jpg": "/static/media/skating.69e6c1201f9fc480c5ac.jpg",
     "static/media/Joanna.jpg": "/static/media/Joanna.13f93bbb0135607bfe0e.jpg",
     "static/media/kseaYG.svg": "/static/media/kseaYG.e99b5f8e7eedc148c975f9094bbe5abc.svg",
     "static/media/Brianna.jpg": "/static/media/Brianna.2aa8b4b2104005a040f2.jpg",
@@ -19,12 +20,12 @@
     "static/media/ksea-logo.png": "/static/media/ksea-logo.d118710ee893d9649a31.png",
     "static/media/logo.svg": "/static/media/logo.c448ed3a6166a6ee3b3116579d22e531.svg",
     "index.html": "/index.html",
-    "main.de2f8637.css.map": "/static/css/main.de2f8637.css.map",
-    "main.0706d623.js.map": "/static/js/main.0706d623.js.map",
+    "main.4a643a21.css.map": "/static/css/main.4a643a21.css.map",
+    "main.6c68c70a.js.map": "/static/js/main.6c68c70a.js.map",
     "453.8138dc98.chunk.js.map": "/static/js/453.8138dc98.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.de2f8637.css",
-    "static/js/main.0706d623.js"
+    "static/css/main.4a643a21.css",
+    "static/js/main.6c68c70a.js"
   ]
 }
