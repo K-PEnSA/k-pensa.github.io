@@ -18,14 +18,20 @@ import ScrollToTop from "./ScrollToTop";
 import GoBackButton from "./GoBackButton";
 import Maintenance from "./Maintenance";
 
-const Router = () => {
+const Router = ({ isUnderMaintenance }: { isUnderMaintenance: boolean }) => {
   return (
     <Routes>
-      <Route path="/" element={<Maintenance />} />
-      <Route path="/About" element={<About />} />
-      <Route path="/Contact" element={<Contact />} />
-      <Route path="/Board" element={<Board />} />
-      <Route path="/KSEA" element={<KSEA />} />
+      {isUnderMaintenance ? (
+        <Route path="*" element={<Maintenance />} />
+      ) : (
+        <>
+          <Route path="/" element={<Home />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/Board" element={<Board />} />
+          <Route path="/KSEA" element={<KSEA />} />
+        </>
+      )}
     </Routes>
   );
 };
@@ -144,7 +150,8 @@ const App = () => {
       )}
 
       {location.pathname !== "/" && <GoBackButton />}
-      <Router />
+      <Router isUnderMaintenance={isUnderMaintenance} />
+
       <ScrollToTop />
       <Footer />
     </>
