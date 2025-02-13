@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const Header = () => {
   return (
-    <section className="relative isolate overflow-hidden bg-zinc-300 px-6 h-[80vh] flex flex-col items-center justify-center">
+    <section className="relative isolate overflow-hidden bg-zinc-300 px-6 h-[100vh] lg:h-[80vh] flex flex-col items-center justify-center">
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

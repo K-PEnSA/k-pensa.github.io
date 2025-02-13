@@ -70,10 +70,10 @@ const App = () => {
     // You can fetch the status from an API or set it based on a time check
     setIsUnderMaintenance(false); // Set to true when the site is under maintenance
   }, []);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
-      {/* Conditionally render the navbar */}
       {!isUnderMaintenance && (
         <nav
           className={`fixed w-full z-40 top-0 start-0 bg-zinc-300 bg-opacity-80 transition-transform duration-300 ${
@@ -89,20 +89,71 @@ const App = () => {
               />
             </NavLink>
 
-            <div
-              className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-              id="navbar-sticky"
+            {/* 햄버거 버튼 (모바일 전용) */}
+            <button
+              className="md:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
+              {isMenuOpen ? "✖️" : "☰"}
+            </button>
+
+            {/* 모바일 메뉴 */}
+            <div
+              className={`absolute top-16 left-0 w-full bg-zinc-300 shadow-md md:hidden transition-transform duration-300 ${
+                isMenuOpen ? "block" : "hidden"
+              }`}
+            >
+              <ul className="flex flex-col p-4 space-y-4">
+                <li>
+                  <NavLink
+                    to="/ABOUT"
+                    className="block py-2 px-3 text-slate-800 rounded hover:bg-slate-200"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    About
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/board"
+                    className="block py-2 px-3 text-slate-800 rounded hover:bg-slate-200"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Board
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/KSEA"
+                    className="block py-2 px-3 text-slate-800 rounded hover:bg-slate-200"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    KSEA
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/Contact"
+                    className="block py-2 px-3 text-slate-800 rounded hover:bg-slate-200"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Contact
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+
+            {/* 데스크탑 메뉴 */}
+            <div className="hidden md:flex md:w-auto">
+              <ul className="flex space-x-8">
                 <li>
                   <NavLink
                     to="/ABOUT"
                     className={({ isActive }) =>
                       isActive
-                        ? "block py-2 px-3 text-slate-800 bg-slate-800 rounded md:bg-transparent md:p-0"
-                        : "block py-2 px-3 text-slate-400 rounded hover:text-slate-800 md:p-0"
+                        ? "text-slate-800"
+                        : "text-slate-400 hover:text-slate-800"
                     }
-                    end
                   >
                     About
                   </NavLink>
@@ -112,8 +163,8 @@ const App = () => {
                     to="/board"
                     className={({ isActive }) =>
                       isActive
-                        ? "block py-2 px-3 text-slate-800 bg-slate-800 rounded md:bg-transparent md:p-0"
-                        : "block py-2 px-3 text-slate-400 rounded hover:text-slate-800 md:p-0"
+                        ? "text-slate-800"
+                        : "text-slate-400 hover:text-slate-800"
                     }
                   >
                     Board
@@ -124,8 +175,8 @@ const App = () => {
                     to="/KSEA"
                     className={({ isActive }) =>
                       isActive
-                        ? "block py-2 px-3 text-slate-800 bg-slate-800 rounded md:bg-transparent md:p-0"
-                        : "block py-2 px-3 text-slate-400 rounded hover:text-slate-800 md:p-0"
+                        ? "text-slate-800"
+                        : "text-slate-400 hover:text-slate-800"
                     }
                   >
                     KSEA
@@ -136,8 +187,8 @@ const App = () => {
                     to="/Contact"
                     className={({ isActive }) =>
                       isActive
-                        ? "block py-2 px-3 text-slate-800 bg-slate-800 rounded md:bg-transparent md:p-0"
-                        : "block py-2 px-3 text-slate-400 rounded hover:text-slate-800 md:p-0"
+                        ? "text-slate-800"
+                        : "text-slate-400 hover:text-slate-800"
                     }
                   >
                     Contact

@@ -3,12 +3,12 @@ import logo from "./assets/logo.svg";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-zinc-300 rounded-lg">
+    <footer className="bg-zinc-300">
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
-          <img src={logo} className="h-6" alt="Pensa Logo" />
+          <img src={logo} className="h-6 mb-4 sm:mb-0" alt="Pensa Logo" />
 
-          <ul className="flex flex-wrap items-center mb-4 text-sm font-medium text-gray-500 sm:mb-0 space-x-6">
+          <ul className="flex flex-wrap items-center mb-4 text-sm font-medium text-gray-500 sm:mb-10 space-x-6">
             <li>
               <a
                 href="https://instagram.com/kpensa_upenn/"
