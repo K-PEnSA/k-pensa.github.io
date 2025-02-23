@@ -24,8 +24,14 @@ const JoinUsButton: React.FC = () => {
         }
         target={isActive ? "_blank" : undefined}
         rel={isActive ? "noopener noreferrer" : undefined}
-        onMouseEnter={() => !isActive && setTooltipVisible(true)}
-        onMouseLeave={() => setTooltipVisible(false)}
+        onMouseEnter={() => {
+          setIsActive(true); // Set isActive to true on hover
+          setTooltipVisible(true);
+        }}
+        onMouseLeave={() => {
+          setIsActive(false); // Optionally reset isActive on mouse leave
+          setTooltipVisible(false);
+        }}
         className={`mx-auto inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg 
           ${
             isActive
