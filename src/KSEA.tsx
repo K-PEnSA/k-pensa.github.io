@@ -35,7 +35,7 @@ const Part1: React.FC = () => {
               <h1 className="mt-2 text-pretty text-4xl font-DMSerifText font-semibold tracking-tight text-slate-700 sm:text-5xl">
                 What is KSEA?
               </h1>
-              <p className="mt-6 text-xl/8 text-gray-700">
+              <p className="mt-6 text-base/7 text-gray-700">
                 <a href="ksea.org" className="font-bold">
                   KSEA
                 </a>{" "}
@@ -76,7 +76,7 @@ const Part2: React.FC = () => {
               <h1 className="mt-2 text-pretty text-4xl font-DMSerifText font-semibold tracking-tight text-slate-700 sm:text-5xl">
                 YG Group
               </h1>
-              <p className="mt-6 text-xl/8 text-gray-700">
+              <p className="mt-6 text-base/7 text-gray-700">
                 Today, KSEA is actively involved in helping create opportunities
                 for the young generation by establishing lines of communication
                 with other talented scientists and engineers in the U.S. and
@@ -100,7 +100,7 @@ const Part2: React.FC = () => {
       </div>
       <div className=" lg:mx-auto  lg:w-full lg:max-w-7xl  lg:py-12 lg:px-8 ">
         <div className="lg:pr-4">
-          <div className=" text-xl/8 text-gray-700">
+          <div className=" text-base/7 text-gray-700">
             <p>
               As a member of KSEA YG Groups, you are encouraged to attend any
               relevant events/conferences or apply to scholarships. Designed for
@@ -111,9 +111,18 @@ const Part2: React.FC = () => {
               planning, and networking. To recognize outstanding undergraduate
               students of Korean heritage in the United States who excel in
               academics as well as in services to the community, KSEA awards
-              $1,500 scholarships to 20 recipients every year. To take advantage
-              of these opportunities, sign up for KSEA’s free undergraduate
-              membership here!
+              $1,500 scholarships to 20 recipients every year.
+              <br />
+              To take advantage of these opportunities, sign up for KSEA’s free
+              undergraduate membership{" "}
+              <a
+                href="https://docs.google.com/document/d/11typOBmHbB3SFvyWqaqwDY26LuH09YXsSPLsZf0IEsQ/edit?tab=t.0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold"
+              >
+                here!
+              </a>
             </p>
           </div>
         </div>

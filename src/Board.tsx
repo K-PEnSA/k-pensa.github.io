@@ -137,9 +137,9 @@ const Board = () => {
           <p className="text-base/7 text-gray-700">
             PEnSA board functions as the governing body of K-PEnSA. Our
             community wouldn't exist without the hard work and commitment of our
-            boards.
+            board members.
             <br />
-            The board consists of 8 differnent positions. New board members are
+            The board consists of 8 different positions. New board members are
             chosen from aspiring general members in the beginning of Fall
             semesters.
           </p>

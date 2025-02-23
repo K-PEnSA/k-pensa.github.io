@@ -18,6 +18,18 @@ const stats = [
   { id: 3, name: "Events Every Year", value: "25+" },
 ];
 
+const whatwedo = `We host a variety of events throughout the year, including networking sessions, social gatherings, and academic workshops to foster professional and personal growth. Some events you can attend are...
+
+- Fall/Spring GBMs
+- Study Sessions
+- Study Breaks
+- Advanced Registration Lunch
+- Faculty Chat
+- Upperclassmen Panel
+- End-of-Semester Social
+
+Additionally, you can take part of our membership benefits such as PEnSA-pedig, K-PEnSA "Houses", and more!`;
+
 const Header = () => {
   return (
     <div className="relative isolate overflow-hidden bg-gray-800 py-24 sm:py-32 mb-12">
@@ -27,9 +39,9 @@ const Header = () => {
             K-PEnSA
           </h2>
           <p className="mt-8 text-xl font-medium text-pretty text-gray-300 sm:text-2xl">
-            “We are an academic, pre-professional, and social organization for
+            "We are an academic, pre-professional, and social organization for
             Korean Penn students who are seeking to find a community with the
-            common interest of science and engineering.”
+            common interest of science and engineering."
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
@@ -82,11 +94,7 @@ export default function About() {
                 backgrounds, we aim to cultivate a collaborative environment
                 rooted in intellectual curiosity and shared professional goals."
       />
-      <Section
-        title="What We Do"
-        image={event}
-        text="We host a variety of events throughout the year, including networking sessions, social gatherings, and academic workshops to foster professional and personal growth."
-      />
+      <Section title="What We Do" image={event} text={whatwedo} />
     </div>
   );
 }
@@ -108,7 +116,12 @@ const Section = ({ title, image, text }: SectionProps) => {
             </h1>
           </div>
           <div className="max-w-xl mt-12 mb-12 lg:mb-0 text-base/7 text-gray-700 lg:max-w-lg">
-            <p>{text}</p>
+            {text.split("\n").map((line, index) => (
+              <span key={index}>
+                {line}
+                <br />
+              </span>
+            ))}
           </div>
         </div>
         <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:overflow-hidden">

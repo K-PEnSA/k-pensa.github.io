@@ -113,15 +113,7 @@ const App = () => {
                     About
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to="/board"
-                    className="block py-2 px-3 text-slate-800 rounded hover:bg-slate-200"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Board
-                  </NavLink>
-                </li>
+
                 <li>
                   <NavLink
                     to="/KSEA"
@@ -129,6 +121,15 @@ const App = () => {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     KSEA
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/board"
+                    className="block py-2 px-3 text-slate-800 rounded hover:bg-slate-200"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Board
                   </NavLink>
                 </li>
                 <li>
@@ -160,18 +161,6 @@ const App = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/board"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-slate-800"
-                        : "text-slate-400 hover:text-slate-800"
-                    }
-                  >
-                    Board
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
                     to="/KSEA"
                     className={({ isActive }) =>
                       isActive
@@ -182,6 +171,19 @@ const App = () => {
                     KSEA
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    to="/board"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-slate-800"
+                        : "text-slate-400 hover:text-slate-800"
+                    }
+                  >
+                    Board
+                  </NavLink>
+                </li>
+
                 <li>
                   <NavLink
                     to="/Contact"

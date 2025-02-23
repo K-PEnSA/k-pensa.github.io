@@ -17,8 +17,8 @@ const Header = () => {
         transition={{ duration: 1, delay: 0.5 }}
         className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48"
       >
-        Korean Penn Engineering and Scientists Association | Penn Young
-        Generation Group of KSEA
+        Korea-Penn Engineers and Scientists Association | Penn Young Generation
+        Group of KSEA
       </motion.p>
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
