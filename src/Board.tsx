@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import hajoonImage from "./assets/boards/Professional-Headshot.png";
+import hajoonImage from "./assets/boards/hajoon-new.jpg";
 import joannaImage from "./assets/boards/Joanna.jpg";
 import briannaImage from "./assets/boards/Brianna.jpg";
 import monicaImage from "./assets/boards/Monica.jpg";
