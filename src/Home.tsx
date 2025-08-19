@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import EventCarousel from "./EventCarousel";
+import logoCopy from "./assets/logo-copy.png";
 
 // Counter component that animates from 0 to target value
 const AnimatedCounter = ({ target, suffix = "", duration = 2, delay = 0 }: {
@@ -70,11 +71,19 @@ const Hero = () => {
         className="relative z-10 w-full flex flex-col items-center justify-center px-6"
       >
         <div className="text-center flex flex-col items-center max-w-4xl">
+          <motion.img
+            src={logoCopy}
+            alt="K-PEnSA logo"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="-mt-9 md:-mt-11 mb-6 w-16 h-16 object-contain"
+          />
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="mb-8 bg-gradient-to-r from-pensa-blue-70 via-pensa-blue-100 to-pensa-blue-70 bg-[length:200%_auto] bg-clip-text text-6xl font-bold font-DMSerifText text-transparent text-center"
+            className="mb-5 bg-gradient-to-r from-pensa-blue-70 via-pensa-blue-100 to-pensa-blue-70 bg-[length:200%_auto] bg-clip-text text-6xl font-bold font-DMSerifText text-transparent text-center"
           >
             Welcome to K-PEnSA
           </motion.h1>
@@ -82,7 +91,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="mb-8 text-lg font-normal text-slate-700 lg:text-xl font-medium text-center max-w-3xl"
+            className="mb-9 text-lg font-normal text-slate-700 lg:text-xl font-medium text-center max-w-none md:whitespace-nowrap"
           >
             Korea-Penn Engineers and Scientists Association | Penn Young Generation
             Group of KSEA
