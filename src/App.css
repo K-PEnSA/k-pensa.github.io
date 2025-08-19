@@ -522,4 +522,82 @@
     animation: hero-gradient-animation 15s linear infinite alternate;
     background-blend-mode: overlay, normal, normal, normal, normal, normal, normal, normal, normal, normal, normal;
 }
-  
+
+/* Smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Enhanced parallax container */
+.parallax-container {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Floating animation keyframes */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+    66% {
+        transform: translateY(5px) rotate(-1deg);
+    }
+}
+
+@keyframes floatReverse {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        transform: translateY(8px) rotate(-2deg);
+    }
+    66% {
+        transform: translateY(-12px) rotate(1deg);
+    }
+}
+
+/* Subtle glow effect for interactive elements */
+.glow-on-hover {
+    transition: all 0.3s ease;
+}
+
+.glow-on-hover:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Performance optimizations for parallax */
+.parallax-element {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+/* Smooth transitions for all motion elements */
+.motion-element {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced gradient text animation */
+.gradient-text-animated {
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
+    background-size: 300% 300%;
+    animation: gradientShift 4s ease infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
