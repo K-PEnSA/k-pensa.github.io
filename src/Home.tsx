@@ -1,5 +1,45 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+
+// Counter component that animates from 0 to target value
+const AnimatedCounter = ({ target, suffix = "", duration = 2, delay = 0 }: {
+  target: number;
+  suffix?: string;
+  duration?: number;
+  delay?: number;
+}) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => {
+        let start = 0;
+        const increment = target / (duration * 60); // 60fps
+        const counter = setInterval(() => {
+          start += increment;
+          if (start >= target) {
+            setCount(target);
+            clearInterval(counter);
+          } else {
+            setCount(Math.floor(start));
+          }
+        }, 1000 / 60);
+
+        return () => clearInterval(counter);
+      }, delay * 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, target, duration, delay]);
+
+  return (
+    <span ref={ref}>
+      {count}{suffix}
+    </span>
+  );
+};
 
 const Hero = () => {
   const ref = useRef(null);
@@ -169,7 +209,7 @@ const AboutSection = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
             >
-              70+
+              <AnimatedCounter target={70} suffix="+" delay={0.5} />
             </motion.div>
             <div className="text-lg text-slate-600">Active Members</div>
           </motion.div>
@@ -187,7 +227,7 @@ const AboutSection = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              20+
+              <AnimatedCounter target={20} suffix="+" delay={0.6} />
             </motion.div>
             <div className="text-lg text-slate-600">Live Semesters</div>
           </motion.div>
@@ -205,7 +245,7 @@ const AboutSection = () => {
               transition={{ duration: 0.6, delay: 0.7 }}
               viewport={{ once: true }}
             >
-              25+
+              <AnimatedCounter target={25} suffix="+" delay={0.7} />
             </motion.div>
             <div className="text-lg text-slate-600">Events Every Year</div>
           </motion.div>
