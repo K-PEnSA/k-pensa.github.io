@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import hajoonImage from "./assets/boards/Professional-Headshot.png";
 import joannaImage from "./assets/boards/Joanna.jpg";
 import briannaImage from "./assets/boards/Brianna.jpg";
 import monicaImage from "./assets/boards/Monica.jpg";
-import joshleeImage from "./assets/boards/JoshL.jpg";
-import seoyeonImage from "./assets/boards/Seoyeon.jpg";
 import jaimieImage from "./assets/boards/Jaimie.jpg";
 import heidiImage from "./assets/boards/Heidi.jpg";
 import joshhongImage from "./assets/boards/joshhong.jpg";
+import tbdImage from "./assets/boards/placeholder.jpg";
+import { motion } from "framer-motion";
 
 const JoinUsButton: React.FC = () => {
   const [isActive, setIsActive] = useState(false); // Button activation state
@@ -38,7 +37,7 @@ const JoinUsButton: React.FC = () => {
               : "border border-slate-400 text-slate-400 cursor-not-allowed"
           }`}
       >
-        Join Us
+        Join the Board
         <svg
           className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
           aria-hidden="true"
@@ -70,101 +69,133 @@ const JoinUsButton: React.FC = () => {
 
 const boardMembers = [
   {
-    name: "Josh Lee",
-    position: "President",
-    image: joshleeImage,
-    description: "Computer Science/Business",
-  },
-  {
-    name: "Seoyeon Choi",
-    position: "Vice President",
-    image: seoyeonImage,
-    description: "Physics/Biophysics",
-  },
-  {
     name: "Monica Cho",
-    position: "External Chair",
+    position: "President",
     image: monicaImage,
     description: "Bioengineering",
   },
   {
-    name: "Hajoon Park",
-    position: "Internal Chair",
-    image: hajoonImage,
-    description: "Design/Computer Science",
-  },
-  {
     name: "Heidi Seo",
-    position: "Secretary",
+    position: "Vice President",
     image: heidiImage,
-    description: "Computer Science/Economics",
+    description: "Computer Science",
   },
   {
     name: "Joanna Kim",
-    position: "Treasurer",
+    position: "External Chair",
     image: joannaImage,
     description: "Biochemistry",
   },
-
   {
     name: "Brianna Hess",
-    position: "Marketing Chair",
+    position: "Internal Chair",
     image: briannaImage,
     description: "Physics",
   },
   {
+    name: "Josh Hong",
+    position: "Secretary",
+    image: joshhongImage,
+    description: "Neuroscience",
+  },
+  {
     name: "Jaimie Ha",
-    position: "Freshman Rep",
+    position: "Treasurer",
     image: jaimieImage,
     description: "Biology",
   },
+
   {
-    name: "Josh Hong",
+    name: "TBD",
+    position: "Marketing Chair",
+    image: tbdImage,
+    description: "--",
+  },
+  {
+    name: "TBD",
     position: "Freshman Rep",
-    image: joshhongImage,
-    description: "Neuroscience",
+    image: tbdImage,
+    description: "--",
+  },
+  {
+    name: "TBD",
+    position: "Freshman Rep",
+    image: tbdImage,
+    description: "--",
   },
 ];
 
 const Board = () => {
   return (
-    <section className="bg-zinc-300 py-24">
+    <section className="relative py-24">
+      <div className="subtle-gradient-bg fixed inset-0 -z-10" />
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-12 lg:px-6">
         <div className="mx-auto max-w-screen-lg text-center">
-          <h2 className="mb-4 text-6xl font-DMSerifText tracking-tight font-extrabold text-slate-700">
+          <motion.h2 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-4 text-6xl font-DMSerifText tracking-tight font-extrabold text-slate-700"
+          >
             Meet the Board
-          </h2>
-          <p className="font-light text-gray-500 sm:text-xl">
-            Behind all our events stands the dedicated PEnSA family.
-          </p>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="font-light text-gray-500 sm:text-xl"
+          >
+            Behind all of our events stands a dedicated K-PEnSA family.
+          </motion.p>
         </div>
-        <div className="py-4 px-4 mx-auto text-center max-w-screen-l lg:py-8 lg:px-6">
-          <p className="text-base/7 text-gray-700">
-            PEnSA board functions as the governing body of K-PEnSA. Our
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="py-4 px-4 mx-auto text-center max-w-screen-l lg:py-8 lg:px-6"
+        >
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-base/7 text-gray-700"
+          >
+            The K-PEnSA board functions as the governing body of K-PEnSA. Our
             community wouldn't exist without the hard work and commitment of our
             board members.
             <br />
-            The board consists of 8 different positions. New board members are
-            chosen from aspiring general members in the beginning of Fall
+            The board consists of 8 different positions with new board members being
+            chosen from aspiring and passionate general body and incoming members in the beginning of Fall
             semesters.
-          </p>
-          <div className="flex justify-center items-center my-16">
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="flex justify-center items-center my-16"
+          >
             <JoinUsButton />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="grid gap-8 mb-6 lg:mb-16 sm:grid-cols-3 lg:grid-cols-3">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.0 }}
+          className="grid gap-8 mb-6 lg:mb-16 sm:grid-cols-3 lg:grid-cols-3"
+        >
           {boardMembers.map((member, index) => (
             <div key={index} className="text-start p-5">
               <img
-                className="mx-auto mb-4 w-96 h-96 object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                //className="mx-auto mb-4 w-96 h-96 object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                className="mx-auto mb-4 w-96 h-96 object-cover saturate-50 hover:saturate-100 transition-all duration-300"
                 src={member.image}
                 alt={`${member.name} Avatar`}
               />
               <h3 className="mt-2 mb-2 text-3xl font-bold tracking-tight font-DMSerifText text-slate-700">
                 <p>{member.name}</p>
               </h3>
-              <h4 className="font-light font-mono text-xl text-gray-400">
+              <h4 className="font-light text-xl text-gray-600">
                 {member.position}
               </h4>
               <p className="mt-2 font-light text-slate-500">
@@ -172,7 +203,7 @@ const Board = () => {
               </p>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

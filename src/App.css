@@ -608,3 +608,14 @@ html {
         background-attachment: scroll;
     }
 }
+
+/* Subtle static red–blue gradient background (no animation) */
+.subtle-gradient-bg {
+    background-color: #ffffff;
+    background-image:
+        radial-gradient(70vmax at top right, rgba(106, 123, 211, 0.35) 0%, rgba(209, 215, 241, 0) 80%),
+        radial-gradient(70vmax at bottom left, rgba(226, 113, 125, 0.50) 0%, rgba(255, 236, 238, 0) 80%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
