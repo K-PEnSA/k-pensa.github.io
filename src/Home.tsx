@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import EventCarousel from "./EventCarousel";
 
 // Counter component that animates from 0 to target value
 const AnimatedCounter = ({ target, suffix = "", duration = 2, delay = 0 }: {
@@ -169,7 +170,7 @@ const AboutSection = () => {
           className="text-center mb-16"
         >
           <motion.h2 
-            className="text-4xl font-bold text-slate-800 mb-6"
+            className="text-4xl font-bold text-slate-800 mb-6 font-DMSerifText"
             whileInView={{ 
               backgroundPosition: ["0% 50%", "100% 50%"] 
             }}
@@ -259,26 +260,33 @@ const AboutSection = () => {
           className="text-center mb-16"
         >
           <motion.h3 
-            className="text-3xl font-bold text-slate-800 mb-6"
+            className="text-4xl font-bold text-slate-800 mb-6 font-DMSerifText"
             whileInView={{ 
               backgroundPosition: ["0% 50%", "100% 50%"] 
             }}
             transition={{ duration: 2, ease: "easeInOut" }}
           >
-            What We Do
+            Past Events
           </motion.h3>
           <motion.p 
-            className="text-lg text-slate-600 max-w-4xl mx-auto leading-relaxed"
+            className="text-lg text-slate-600 max-w-4xl mx-auto leading-relaxed mb-12"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
             viewport={{ once: true }}
           >
-            We host a variety of events throughout the year, including networking sessions, 
-            social gatherings, and academic workshops to foster professional and personal growth. 
-            From study sessions to faculty chats, we create opportunities for members to connect, 
-            learn, and grow together.
+            Browse highlights from recent semesters—including career panels, info sessions, socials, and study sessions.
           </motion.p>
+          
+          {/* Event Carousel */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <EventCarousel />
+          </motion.div>
         </motion.div>
 
         {/* Enhanced CTA section with parallax and animations */}
@@ -292,7 +300,7 @@ const AboutSection = () => {
 
           <div className="max-w-4xl mx-auto text-center relative z-10">
             <motion.h2 
-              className="text-4xl font-bold text-slate-800 mb-6"
+              className="text-4xl font-bold text-slate-800 mb-6 font-DMSerifText"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}

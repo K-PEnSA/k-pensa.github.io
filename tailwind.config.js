@@ -49,7 +49,7 @@ module.exports = {
       },
 
       fontFamily: {
-        DMSerifText: ["DMSerif"],
+        DMSerifText: ["DM Serif Text", "serif"],
       },
     },
   },
