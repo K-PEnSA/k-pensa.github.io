@@ -91,7 +91,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="mb-9 text-lg font-normal text-slate-700 lg:text-xl font-medium text-center max-w-none md:whitespace-nowrap"
+            className="mb-9 text-lg text-slate-700 lg:text-xl font-medium text-center max-w-none md:whitespace-nowrap"
           >
             Korea-Penn Engineers and Scientists Association | Penn Young Generation
             Group of KSEA
