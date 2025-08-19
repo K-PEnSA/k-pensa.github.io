@@ -76,7 +76,7 @@ const App = () => {
     <>
       {!isUnderMaintenance && (
         <nav
-          className={`fixed w-full z-40 top-0 start-0 bg-zinc-300 bg-opacity-80 transition-transform duration-300 ${
+          className={`fixed w-full z-40 top-0 start-0 bg-transparent transition-transform duration-300 ${
             isVisible ? "translate-y-0" : "-translate-y-full"
           }`}
         >
@@ -99,7 +99,7 @@ const App = () => {
 
             {/* 모바일 메뉴 */}
             <div
-              className={`absolute top-16 left-0 w-full bg-zinc-300 shadow-md md:hidden transition-transform duration-300 ${
+              className={`absolute top-16 left-0 w-full bg-white/90 backdrop-blur-sm shadow-md md:hidden transition-transform duration-300 ${
                 isMenuOpen ? "block" : "hidden"
               }`}
             >
@@ -152,8 +152,8 @@ const App = () => {
                     to="/ABOUT"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-slate-800"
-                        : "text-slate-400 hover:text-slate-800"
+                        ? "text-slate-800 font-semibold"
+                        : "text-slate-700 hover:text-slate-800 font-medium"
                     }
                   >
                     About
@@ -164,8 +164,8 @@ const App = () => {
                     to="/KSEA"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-slate-800"
-                        : "text-slate-400 hover:text-slate-800"
+                        ? "text-slate-800 font-semibold"
+                        : "text-slate-700 hover:text-slate-800 font-medium"
                     }
                   >
                     KSEA
@@ -176,8 +176,8 @@ const App = () => {
                     to="/board"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-slate-800"
-                        : "text-slate-400 hover:text-slate-800"
+                        ? "text-slate-800 font-semibold"
+                        : "text-slate-700 hover:text-slate-800 font-medium"
                     }
                   >
                     Board
@@ -189,8 +189,8 @@ const App = () => {
                     to="/Contact"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-slate-800"
-                        : "text-slate-400 hover:text-slate-800"
+                        ? "text-slate-800 font-semibold"
+                        : "text-slate-700 hover:text-slate-800 font-medium"
                     }
                   >
                     Contact
