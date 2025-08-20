@@ -56,7 +56,7 @@ const Contact = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-2 text-lg leading-8 text-gray-600"
         >
-          We are always open to a new member.
+          We are always open to new members! 
         </motion.p>
       </motion.div>
       <motion.form

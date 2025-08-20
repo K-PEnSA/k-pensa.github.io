@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import joannaImage from "./assets/boards/Joanna.jpg";
 import briannaImage from "./assets/boards/Brianna.jpg";
 import monicaImage from "./assets/boards/Monica.jpg";
@@ -6,7 +6,7 @@ import jaimieImage from "./assets/boards/Jaimie.jpg";
 import heidiImage from "./assets/boards/Heidi.jpg";
 import joshhongImage from "./assets/boards/joshhong.jpg";
 import tbdImage from "./assets/boards/placeholder.jpg";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 const JoinUsButton: React.FC = () => {
   const [isActive, setIsActive] = useState(false); // Button activation state
@@ -178,34 +178,63 @@ const Board = () => {
           </motion.div>
         </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.0 }}
-          className="grid gap-8 mb-6 lg:mb-16 sm:grid-cols-3 lg:grid-cols-3"
-        >
+        <div className="grid gap-8 mb-6 lg:mb-16 sm:grid-cols-3 lg:grid-cols-3">
           {boardMembers.map((member, index) => (
-            <div key={index} className="text-start p-5">
-              <img
-                //className="mx-auto mb-4 w-96 h-96 object-cover grayscale hover:grayscale-0 transition-all duration-300"
-                className="mx-auto mb-4 w-96 h-96 object-cover saturate-50 hover:saturate-100 transition-all duration-300"
-                src={member.image}
-                alt={`${member.name} Avatar`}
-              />
-              <h3 className="mt-2 mb-2 text-3xl font-bold tracking-tight font-DMSerifText text-slate-700">
-                <p>{member.name}</p>
-              </h3>
-              <h4 className="font-light text-xl text-gray-600">
-                {member.position}
-              </h4>
-              <p className="mt-2 font-light text-slate-500">
-                {member.description}
-              </p>
-            </div>
+            <BoardMemberCard key={index} member={member} index={index} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
+  );
+};
+
+// New component for animated board member cards
+const BoardMemberCard = ({ member, index }: { member: any; index: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <motion.div 
+      ref={ref}
+      initial={{ opacity: 0, y: 30, scale: 0.9 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
+              transition={{ duration: 0.6, delay: index < 3 ? index * 0.1 : (index - 3) * 0.02 + 0.3 }}
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="text-start p-5"
+    >
+      <motion.img
+        className="mx-auto mb-4 w-96 h-96 object-cover saturate-50 hover:saturate-100 transition-all duration-300"
+        src={member.image}
+        alt={`${member.name} Avatar`}
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.6, delay: index < 3 ? index * 0.1 + 0.3 : (index - 3) * 0.02 + 0.6 }}
+      />
+      <motion.h3 
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, delay: index < 3 ? index * 0.1 + 0.1 : (index - 3) * 0.02 + 0.4 }}
+        className="mt-2 mb-2 text-3xl font-bold tracking-tight font-DMSerifText text-slate-700"
+      >
+        <p>{member.name}</p>
+      </motion.h3>
+      <motion.h4 
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, delay: index < 3 ? index * 0.1 + 0.2 : (index - 3) * 0.02 + 0.5 }}
+        className="font-light text-xl text-gray-600"
+      >
+        {member.position}
+      </motion.h4>
+      <motion.p 
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, delay: index < 3 ? index * 0.1 + 0.3 : (index - 3) * 0.02 + 0.6 }}
+        className="mt-2 font-light text-slate-500"
+      >
+        {member.description}
+      </motion.p>
+    </motion.div>
   );
 };
 
