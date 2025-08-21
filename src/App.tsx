@@ -26,8 +26,8 @@ const Router = ({ isUnderMaintenance }: { isUnderMaintenance: boolean }) => {
       ) : (
         <>
           <Route path="/" element={<Home />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/Contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/Board" element={<Board />} />
           <Route path="/KSEA" element={<KSEA />} />
         </>
@@ -106,7 +106,7 @@ const App = () => {
               <ul className="flex flex-col p-4 space-y-4">
                 <li>
                   <NavLink
-                    to="/ABOUT"
+                    to="/about"
                     className="block py-2 px-3 text-slate-800 rounded hover:bg-slate-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -134,7 +134,7 @@ const App = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/Contact"
+                    to="/contact"
                     className="block py-2 px-3 text-slate-800 rounded hover:bg-slate-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -149,7 +149,7 @@ const App = () => {
               <ul className="flex space-x-8">
                 <li>
                   <NavLink
-                    to="/ABOUT"
+                    to="/about"
                     className={({ isActive }) =>
                       isActive
                         ? "text-slate-800 font-semibold"
@@ -186,7 +186,7 @@ const App = () => {
 
                 <li>
                   <NavLink
-                    to="/Contact"
+                    to="/contact"
                     className={({ isActive }) =>
                       isActive
                         ? "text-slate-800 font-semibold"
