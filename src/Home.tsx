@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import EventCarousel from "./EventCarousel";
 import logoCopy from "./assets/logo-copy.png";
 
-// Counter component that animates from 0 to target value
+// Animated counter component
 const AnimatedCounter = ({ target, suffix = "", duration = 2, delay = 0 }: {
   target: number;
   suffix?: string;
@@ -50,15 +50,12 @@ const Hero = () => {
     offset: ["start start", "end start"]
   });
 
-  // Different parallax speeds for different layers
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const logoY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const floatingElementsY = useTransform(scrollYProgress, [0, 1], ["0%", "75%"]);
 
   return (
     <section ref={ref} className="relative isolate overflow-hidden h-screen flex flex-col items-center justify-center">
-      {/* Animated gradient background with parallax */}
       <motion.div 
         style={{ y: backgroundY }}
         className="full-page-gradient absolute inset-0 w-full h-[120%]"
@@ -128,7 +125,7 @@ const Hero = () => {
         </div>
       </motion.div>
       
-      {/* Scroll indicator with subtle parallax */}
+      {/* Scroll indicator */}
       <motion.div 
         style={{ y: logoY }}
         className="absolute bottom-8 left-0 right-0 z-20 flex justify-center"
@@ -162,8 +159,6 @@ const AboutSection = () => {
     offset: ["start end", "end start"]
   });
 
-  // Parallax transforms for different elements
-  const backgroundImageY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const statsY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
 
   return (
@@ -200,7 +195,7 @@ const AboutSection = () => {
           </motion.p>
         </motion.div>
 
-        {/* Stats with enhanced parallax and hover effects */}
+        {/* Stats */}
         <motion.div 
           style={{ y: statsY }}
           className="grid md:grid-cols-3 gap-8 mb-16"
@@ -261,6 +256,64 @@ const AboutSection = () => {
           </motion.div>
         </motion.div>
 
+        {/* Buttons below stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row gap-10 justify-center items-center mb-16"
+        >
+          <motion.a
+            href="/#/about"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-white rounded-lg bg-pensa-blue-70 hover:bg-pensa-blue-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Learn More About Us
+            <svg
+              className="w-4 h-4 ms-2 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
+              />
+            </svg>
+          </motion.a>
+          <motion.a
+            href="/#/board"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-white rounded-lg bg-pensa-blue-70 hover:bg-pensa-blue-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Meet the Board
+            <svg
+              className="w-4 h-4 ms-2 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
+              />
+            </svg>
+          </motion.a>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -298,7 +351,6 @@ const AboutSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Enhanced CTA section with parallax and animations */}
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}

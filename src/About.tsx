@@ -1,6 +1,7 @@
 import demographics from "./assets/demographics.png";
 import banner from "./assets/fbmainbanner.jpg";
 import event from "./assets/skating.jpg";
+import panel from "./assets/panel.jpg";
 import { motion, useInView, animate } from "framer-motion";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
@@ -12,23 +13,16 @@ const links = [
   { name: "Contact Us", href: "/#/contact" },
 ];
 
-const stats = [
-  { id: 1, name: "Active Members", value: "70+" },
-  { id: 2, name: "Live Semesters", value: "20+" },
-  { id: 3, name: "Events Every Year", value: "25+" },
-];
+const whatwedo = `We host a variety of events throughout the year, including networking sessions, social gatherings, and academic workshops to foster professional and personal growth. Some events you can attend are:
 
-const whatwedo = `We host a variety of events throughout the year, including networking sessions, social gatherings, and academic workshops to foster professional and personal growth. Some events you can attend are...
+• Fall/Spring GBMs
+• Study Sessions
+• Advanced Registration Lunch
+• Faculty Chat
+• Upperclassmen/Career Panel
+• End-of-Semester Social
 
-- Fall/Spring GBMs
-- Study Sessions
-- Study Breaks
-- Advanced Registration Lunch
-- Faculty Chat
-- Upperclassmen Panel
-- End-of-Semester Social
-
-Additionally, you can take part of our membership benefits such as PEnSA-pedig, K-PEnSA "Houses", and more!`;
+Additionally, you can take part of our membership benefits such as PEnSA-pedia, K-PEnSA "Houses", and more!`;
 
 type Slice = { name: string; value: number };
 
@@ -112,9 +106,9 @@ function AnimatedSweepPie({
   };
 
   return (
-    <div ref={hostRef} className="w-full p-6">
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-base sm:text-sm font-semibold text-gray-800">{title}</h3>
+    <div ref={hostRef} className="w-full p-3 sm:p-4 lg:p-6">
+      <div className="flex items-center justify-between mb-2 sm:mb-3">
+        <h3 className="text-sm sm:text-base font-semibold text-gray-800">{title}</h3>
       </div>
       <div className="h-72 sm:h-80">
         <ResponsiveContainer width="100%" height="100%">
@@ -182,15 +176,15 @@ export default function About() {
   ];
 
   return (
-    <section className="relative py-24">
+    <section className="relative py-12 sm:py-16 lg:py-24">
       <div className="subtle-gradient-bg fixed inset-0 -z-10" />
 
-      <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-12 lg:px-6">
+      <div className="py-6 px-4 mx-auto max-w-screen-xl sm:py-8 lg:py-12 lg:px-6">
         <div className="mx-auto max-w-screen-lg text-center">
-          <motion.h2 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="mb-4 text-6xl font-DMSerifText tracking-tight font-extrabold text-slate-700">
+          <motion.h2 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-DMSerifText tracking-tight font-extrabold text-slate-700">
             About K-PEnSA
           </motion.h2>
-          <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="font-light text-gray-500 sm:text-xl">
+          <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="font-light text-gray-500 text-base sm:text-lg lg:text-xl px-4">
             "We are an academic, pre-professional, and social organization for Korean Penn students who are seeking to find a community with the common interest of science and engineering."
           </motion.p>
         </div>
@@ -201,7 +195,7 @@ export default function About() {
       <Section
         title="Our Community"
         image={demographics}
-        text="Our members represent all four undergraduate schools at the university: Penn Engineering, the College of Arts and Sciences, The Wharton School, Penn Nursing, and students in graduate programs as well. By connecting students from diverse academic backgrounds, we aim to cultivate a collaborative environment rooted in intellectual curiosity and shared professional goals."
+        text="Our members represent all four undergraduate schools at the university: Penn Engineering, the College of Arts and Sciences, The Wharton School, Penn Nursing, and students in graduate programs as well. By connecting students from diverse academic backgrounds, we aim to cultivate a collaborative environment rooted in intellectual curiosity and shared professional goals. You do not need to be a STEM student to join K-PEnSA!"
         reverse={true}
         rightSlot={
           <motion.div
@@ -209,14 +203,50 @@ export default function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="-ml-0 lg:-ml-12"
+            className="-ml-0 sm:-ml-4 lg:-ml-12"
           >
             <AnimatedSweepPie data={majors} title="Major Distribution 24-25" animationDuration={2500} />
           </motion.div>
         }
       />
 
-      <Section title="What We Do" image={event} text={whatwedo} />
+      <Section 
+        title="What We Do" 
+        image={event} 
+        text={whatwedo} 
+        rightSlot={
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="-ml-4 -mt-4 p-4 sm:-ml-6 sm:-mt-6 sm:p-6 lg:-ml-12 lg:-mt-12 lg:p-12 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden"
+          >
+            <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] flex items-center justify-center">
+              <div className="relative w-full h-full">
+                <motion.img
+                  initial={{ opacity: 0, x: 20, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  alt="K-PEnSA Events"
+                  src={event}
+                  className="w-48 h-auto sm:w-56 md:w-64 lg:w-[21rem] rounded-2xl shadow-xl transform rotate-6 absolute top-2 left-2 sm:top-3 sm:left-3 lg:top-4 lg:left-4 z-20"
+                />
+                <motion.img
+                  initial={{ opacity: 0, x: 20, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  alt="Career Panel"
+                  src={panel}
+                  className="w-48 h-auto sm:w-56 md:w-64 lg:w-96 rounded-2xl shadow-xl transform -rotate-6 absolute bottom-2 -right-4 sm:bottom-3 sm:-right-6 lg:bottom-4 lg:-right-8 z-10"
+                />
+              </div>
+            </div>
+          </motion.div>
+        }
+      />
     </section>
   );
 }
@@ -239,23 +269,23 @@ const Section = ({ title, image, text, reverse = false, hideImage = false, right
   const contentColSpan = rightSlot ? "" : hideImage ? "lg:col-span-2" : "";
 
   return (
-    <div ref={ref} className="my-24 px-4 lg:px-0 mx-auto max-w-2xl lg:max-w-7xl">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-16 lg:gap-y-10 lg:items-start">
+    <div ref={ref} className="mt-6 mb-16 sm:mt-8 sm:mb-20 lg:mt-8 lg:mb-24 px-4 lg:px-0 mx-auto max-w-2xl lg:max-w-7xl">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-8 sm:gap-y-12 lg:gap-y-16 lg:items-start">
         {rightSlot ? (
           <div className={`${sideOrder}`}>{rightSlot}</div>
         ) : !hideImage ? (
-          <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }} transition={{ duration: 0.8, delay: 0.4 }} className={`${sideOrder} -ml-12 -mt-12 p-12 lg:sticky lg:top-4`}>
+          <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }} transition={{ duration: 0.8, delay: 0.4 }} className={`${sideOrder} -ml-4 sm:-ml-6 lg:-ml-12 mt-4 p-4 sm:p-6 lg:p-12`}>
             <img alt="" src={image} className="w-full max-w-none rounded-xl bg-gray-900 shadow-md" />
           </motion.div>
         ) : null}
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} transition={{ duration: 0.8, delay: 0.2 }} className={`${contentOrder} lg:pr-4 ${contentColSpan}`}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} transition={{ duration: 0.8, delay: 0.2 }} className={`${contentOrder} lg:pr-4 lg:pt-8 ${contentColSpan}`}>
           <div className="lg:max-w-lg">
-            <motion.h1 initial={{ opacity: 0, y: -20 }} animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }} transition={{ duration: 0.8 }} className="mt-2 text-pretty text-4xl font-DMSerifText font-semibold tracking-tight text-slate-700 sm:text-5xl">
+            <motion.h1 initial={{ opacity: 0, y: -20 }} animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }} transition={{ duration: 0.8 }} className="mt-2 text-pretty text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-DMSerifText font-semibold tracking-tight text-slate-700">
               {title}
             </motion.h1>
           </div>
-          <div className="max-w-xl mt-12 mb-12 lg:mb-0 text-base/7 text-gray-700 lg:max-w-lg">
+          <div className="max-w-xl mt-6 sm:mt-8 mb-8 sm:mb-10 lg:mb-0 lg:mt-8 text-base/7 text-gray-700 lg:max-w-lg">
             {text.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
@@ -272,9 +302,7 @@ const Section = ({ title, image, text, reverse = false, hideImage = false, right
 // Animated Pie Chart Component using Recharts
 const AnimatedPieChart = () => {
   const chartRef = useRef(null);
-  const isChartInView = useInView(chartRef, { once: true, margin: "-50px" });
-
-  // Sample data - you can adjust these percentages and labels
+  
   const data = [
     { name: "Pre-Health/Natural Sciences", value: 49.4, color: "#99bdf7" },
     { name: "Engineering", value: 6.0, color: "#2f2e75" },

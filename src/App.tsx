@@ -41,6 +41,13 @@ const App = () => {
   const [isVisible, setIsVisible] = useState(true); // State to control navbar visibility
   const [lastScrollY, setLastScrollY] = useState(0); // To track the last scroll position
 
+  // Scroll to top when route changes
+  useEffect(() => {
+    window.scrollY = 0;
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [location.pathname]);
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -81,7 +88,7 @@ const App = () => {
           }`}
         >
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <NavLink to="/" end>
+            <NavLink to="/" end className="-ml-2">
               <img
                 src={logo}
                 alt="K-PEnSA Logo"
