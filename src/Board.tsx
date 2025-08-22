@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+
 import joannaImage from "./assets/boards/Joanna.jpg";
 import briannaImage from "./assets/boards/Brianna.jpg";
 import monicaImage from "./assets/boards/Monica.jpg";
