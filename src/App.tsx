@@ -26,8 +26,8 @@ const Router = ({ isUnderMaintenance }: { isUnderMaintenance: boolean }) => {
       ) : (
         <>
           <Route path="/" element={<Home />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/Contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/Board" element={<Board />} />
           <Route path="/KSEA" element={<KSEA />} />
         </>
@@ -40,6 +40,13 @@ const App = () => {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(true); // State to control navbar visibility
   const [lastScrollY, setLastScrollY] = useState(0); // To track the last scroll position
+
+  // Scroll to top when route changes
+  useEffect(() => {
+    window.scrollY = 0;
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,12 +83,12 @@ const App = () => {
     <>
       {!isUnderMaintenance && (
         <nav
-          className={`fixed w-full z-40 top-0 start-0 bg-zinc-300 bg-opacity-80 transition-transform duration-300 ${
+          className={`fixed w-full z-40 top-0 start-0 bg-transparent transition-transform duration-300 ${
             isVisible ? "translate-y-0" : "-translate-y-full"
           }`}
         >
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <NavLink to="/" end>
+            <NavLink to="/" end className="-ml-2">
               <img
                 src={logo}
                 alt="K-PEnSA Logo"
@@ -99,14 +106,14 @@ const App = () => {
 
             {/* 모바일 메뉴 */}
             <div
-              className={`absolute top-16 left-0 w-full bg-zinc-300 shadow-md md:hidden transition-transform duration-300 ${
+              className={`absolute top-16 left-0 w-full bg-white/90 backdrop-blur-sm shadow-md md:hidden transition-transform duration-300 ${
                 isMenuOpen ? "block" : "hidden"
               }`}
             >
               <ul className="flex flex-col p-4 space-y-4">
                 <li>
                   <NavLink
-                    to="/ABOUT"
+                    to="/about"
                     className="block py-2 px-3 text-slate-800 rounded hover:bg-slate-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -134,7 +141,7 @@ const App = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/Contact"
+                    to="/contact"
                     className="block py-2 px-3 text-slate-800 rounded hover:bg-slate-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -149,11 +156,11 @@ const App = () => {
               <ul className="flex space-x-8">
                 <li>
                   <NavLink
-                    to="/ABOUT"
+                    to="/about"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-slate-800"
-                        : "text-slate-400 hover:text-slate-800"
+                        ? "text-slate-800 font-semibold"
+                        : "text-slate-700 hover:text-slate-800 font-medium"
                     }
                   >
                     About
@@ -164,8 +171,8 @@ const App = () => {
                     to="/KSEA"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-slate-800"
-                        : "text-slate-400 hover:text-slate-800"
+                        ? "text-slate-800 font-semibold"
+                        : "text-slate-700 hover:text-slate-800 font-medium"
                     }
                   >
                     KSEA
@@ -176,8 +183,8 @@ const App = () => {
                     to="/board"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-slate-800"
-                        : "text-slate-400 hover:text-slate-800"
+                        ? "text-slate-800 font-semibold"
+                        : "text-slate-700 hover:text-slate-800 font-medium"
                     }
                   >
                     Board
@@ -186,11 +193,11 @@ const App = () => {
 
                 <li>
                   <NavLink
-                    to="/Contact"
+                    to="/contact"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-slate-800"
-                        : "text-slate-400 hover:text-slate-800"
+                        ? "text-slate-800 font-semibold"
+                        : "text-slate-700 hover:text-slate-800 font-medium"
                     }
                   >
                     Contact

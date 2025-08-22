@@ -5,16 +5,23 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-zinc-300">
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <img src={logo} className="h-6 mb-4 sm:mb-0" alt="Pensa Logo" />
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Logo */}
+          <img src={logo} className="h-6" alt="Pensa Logo" />
+          
+          {/* Copyright */}
+          <span className="text-sm text-gray-500 text-center">
+            © 2025 K-PEnSA All Rights Reserved.
+          </span>
 
-          <ul className="flex flex-wrap items-center mb-4 text-sm font-medium text-gray-500 sm:mb-10 space-x-6">
+          {/* Social Icons */}
+          <ul className="flex items-center space-x-6">
             <li>
               <a
                 href="https://instagram.com/kpensa_upenn/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline"
+                className="hover:underline text-gray-500 hover:text-gray-700 transition-colors"
               >
                 <span className="[&>svg]:h-5 [&>svg]:w-5">
                   <svg
@@ -30,7 +37,7 @@ const Footer: React.FC = () => {
             <li>
               <a
                 href="mailto:kpensaboard@gmail.com"
-                className="hover:underline"
+                className="hover:underline text-gray-500 hover:text-gray-700 transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +45,7 @@ const Footer: React.FC = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="h-6 w-6"
+                  className="h-5 w-5"
                 >
                   <path
                     strokeLinecap="round"
@@ -50,10 +57,6 @@ const Footer: React.FC = () => {
             </li>
           </ul>
         </div>
-        {/* <hr className="w border-gray-200 sm:mx-auto lg:my-8" /> */}
-        <span className="block text-sm text-gray-500 sm:text-center">
-          © 2024 K-PEnSA All Rights Reserved.
-        </span>
       </div>
     </footer>
   );

@@ -1,101 +1,253 @@
 import demographics from "./assets/demographics.png";
 import banner from "./assets/fbmainbanner.jpg";
 import event from "./assets/skating.jpg";
+import panel from "./assets/panel.jpg";
+import { motion, useInView, animate } from "framer-motion";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 
 const links = [
-  {
-    name: "Join K-PEnSA",
-    href: "https://docs.google.com/forms/d/e/1FAIpQLScZBjyvGFNOOhyTszx3tP_h--rjUrwrXml1LbCI4uNxiS6Vpg/viewform",
-  },
+  { name: "Join K-PEnSA", href: "https://docs.google.com/forms/d/e/1FAIpQLScZBjyvGFNOOhyTszx3tP_h--rjUrwrXml1LbCI4uNxiS6Vpg/viewform" },
   { name: "KSEA", href: "/#/KSEA" },
   { name: "Meet our leadership", href: "/#/board" },
   { name: "Contact Us", href: "/#/contact" },
 ];
 
-const stats = [
-  { id: 1, name: "Active Members", value: "70+" },
-  { id: 2, name: "Live Semesters", value: "20+" },
-  { id: 3, name: "Events Every Year", value: "25+" },
-];
+const whatwedo = `We host a variety of events throughout the year, including networking sessions, social gatherings, and academic workshops to foster professional and personal growth. Some events you can attend are:
 
-const whatwedo = `We host a variety of events throughout the year, including networking sessions, social gatherings, and academic workshops to foster professional and personal growth. Some events you can attend are...
+• Fall/Spring GBMs
+• Study Sessions
+• Advanced Registration Lunch
+• Faculty Chat
+• Upperclassmen/Career Panel
+• End-of-Semester Social
 
-- Fall/Spring GBMs
-- Study Sessions
-- Study Breaks
-- Advanced Registration Lunch
-- Faculty Chat
-- Upperclassmen Panel
-- End-of-Semester Social
+Additionally, you can take part of our membership benefits such as PEnSA-pedia, K-PEnSA "Houses", and more!`;
 
-Additionally, you can take part of our membership benefits such as PEnSA-pedig, K-PEnSA "Houses", and more!`;
+type Slice = { name: string; value: number };
 
-const Header = () => {
+function AnimatedSweepPie({
+  data,
+  title = "Major Distribution",
+  colors = ["#99bdf7", "#2f2e75", "#9b99f7", "#767699", "#111136", "#8B5CF6", "#3B82F6", "#EAB308", "#F43F5E", "#06B6D4"],
+  animationDuration = 1200,
+  startAngle = -90,
+}: {
+  data: Slice[];
+  title?: string;
+  colors?: string[];
+  animationDuration?: number;
+  startAngle?: number;
+}) {
+  const [sweep, setSweep] = useState(0);
+  const hostRef = useRef<HTMLDivElement | null>(null);
+  const inView = useInView(hostRef, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (!inView) return;
+    setSweep(0);
+    const controls = animate(0, 360, {
+      duration: animationDuration / 1000,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => setSweep(v),
+    });
+    return () => controls.stop();
+  }, [inView, JSON.stringify(data), animationDuration]);
+
+  const total = useMemo(() => data.reduce((a, d) => a + (isFinite(d.value) ? d.value : 0), 0), [data]);
+  const palette = useMemo(() => Array.from({ length: data.length }, (_, i) => colors[i % colors.length]), [colors, data.length]);
+
+  const RAD = Math.PI / 180;
+  const LABEL_OFFSET =20; // distance outside the outerRadius
+  const renderLabel = ({ name, cx, cy, midAngle, outerRadius }: any) => {
+    const r = (outerRadius ?? 0) + LABEL_OFFSET;
+    const x = cx + r * Math.cos(-midAngle * RAD);
+    const y = cy + r * Math.sin(-midAngle * RAD);
+    const textAnchor = Math.cos(-midAngle * RAD) >= 0 ? "start" : "end";
+    
+    // Split Pre-Health/Natural Sciences into two lines
+    if (name === "Pre-Health/Natural Sciences") {
+      const lineHeight = 14;
+      return (
+        <g>
+          <text
+            x={x}
+            y={y - lineHeight/2}
+            textAnchor={textAnchor}
+            dominantBaseline="central"
+            style={{ fontSize: "11px", fill: "#333" }}
+          >
+            Pre-Health/
+          </text>
+          <text
+            x={x}
+            y={y + lineHeight/2}
+            textAnchor={textAnchor}
+            dominantBaseline="central"
+            style={{ fontSize: "11px", fill: "#333" }}
+          >
+            Natural Sciences
+          </text>
+        </g>
+      );
+    }
+    
+    return (
+      <text
+        x={x}
+        y={y}
+        textAnchor={textAnchor}
+        dominantBaseline="central"
+        style={{ fontSize: "11px", fill: "#333" }}
+      >
+        {name}
+      </text>
+    );
+  };
+
   return (
-    <div className="relative isolate overflow-hidden bg-gray-800 py-24 sm:py-32 mb-12">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto lg:mx-0">
-          <h2 className="text-5xl font-semibold tracking-tight text-white sm:text-7xl">
-            K-PEnSA
-          </h2>
-          <p className="mt-8 text-xl font-medium text-pretty text-gray-300 sm:text-2xl">
-            "We are an academic, pre-professional, and social organization for
-            Korean Penn students who are seeking to find a community with the
-            common interest of science and engineering."
-          </p>
-        </div>
-        <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-          <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base/7 font-semibold text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-            {links.map((link) => (
-              <a key={link.name} href={link.href}>
-                {link.name} <span aria-hidden="true">&rarr;</span>
-              </a>
-            ))}
-          </div>
-          <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.name} className="flex flex-col-reverse gap-1">
-                <dt className="text-base/7 text-gray-300">{stat.name}</dt>
-                <dd className="text-4xl font-semibold tracking-tight text-white">
-                  {stat.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+    <div ref={hostRef} className="w-full p-3 sm:p-4 lg:p-6">
+      <div className="flex items-center justify-between mb-2 sm:mb-3">
+        <h3 className="text-sm sm:text-base font-semibold text-gray-800">{title}</h3>
+      </div>
+      <div className="h-72 sm:h-80">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={data}
+              dataKey="value"
+              nameKey="name"
+              startAngle={startAngle}
+              endAngle={startAngle + sweep}
+              innerRadius={70}
+              outerRadius={130}
+              paddingAngle={0}
+              isAnimationActive={false}
+              labelLine={({ cx, cy, midAngle, innerRadius, outerRadius }) => {
+                const RAD = Math.PI / 180;
+                const sin = Math.sin(-RAD * midAngle);
+                const cos = Math.cos(-RAD * midAngle);
+                const x1 = cx + outerRadius * cos;
+                const y1 = cy + outerRadius * sin;
+                const x2 = cx + (outerRadius + 12) * cos;
+                const y2 = cy + (outerRadius + 12) * sin;
+                return (
+                  <line
+                    x1={x1}
+                    y1={y1}
+                    x2={x2}
+                    y2={y2}
+                    stroke="#999"
+                    strokeWidth={1}
+                  />
+                );
+              }}
+              label={renderLabel} 
+            >
+              {data.map((_, i) => (
+                <Cell key={i} fill={palette[i]} />
+              ))}
+            </Pie>
+            <Tooltip 
+              formatter={(v: number, _n: string, { payload }: any) => [`${v}%`, payload?.name]}
+              contentStyle={{ 
+                fontSize: '12px', 
+                padding: '6px 8px',
+                border: '1px solid #e5e7eb',
+                borderRadius: '6px',
+                backgroundColor: 'white',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+              }}
+            />
+          </PieChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
-};
+}
 
 export default function About() {
+  const majors: Slice[] = [
+    { name: "Pre-Health/Natural Sciences", value: 49.4 },
+    { name: "Engineering", value: 6.0 },
+    { name: "CIS/DMD", value: 26.5 },
+    { name: "Business/Humanities", value: 15.7 },
+    { name: "Design", value: 2.4 },
+  ];
+
   return (
-    <div className="relative isolate overflow-hidden bg-zinc-300 px-0 py-12 sm:py-24 lg:overflow-visible lg:px-0">
-      <Header />
-      <Section
-        title="Who We Are"
-        image={banner}
-        text="Founded in 2015, Korea-Penn Engineers and Scientists Association
-        (K-PEnSA) is a vibrant community at the University of
-        Pennsylvania that brings together students at the crossroads of
-        academics, career development, and social connection. Our
-        mission is to support the unique cultural and academic needs of
-        Penn students in engineering and science-related fields,
-        fostering a space where members can share professional insights,
-        resources, and experiences that drive career growth and success."
-      />
+    <section className="relative py-12 sm:py-16 lg:py-24">
+      <div className="subtle-gradient-bg fixed inset-0 -z-10" />
+
+      <div className="py-6 px-4 mx-auto max-w-screen-xl sm:py-8 lg:py-12 lg:px-6">
+        <div className="mx-auto max-w-screen-lg text-center">
+          <motion.h2 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-DMSerifText tracking-tight font-extrabold text-slate-700">
+            About K-PEnSA
+          </motion.h2>
+          <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="font-light text-gray-500 text-base sm:text-lg lg:text-xl px-4">
+            "We are an academic, pre-professional, and social organization for Korean Penn students who are seeking to find a community with the common interest of science and engineering."
+          </motion.p>
+        </div>
+      </div>
+
+      <Section title="Who We Are" image={banner} text="Founded in 2015, Korea-Penn Engineers and Scientists Association (K-PEnSA) is a vibrant community at the University of Pennsylvania that brings together students at the crossroads of academics, career development, and social connection. Our mission is to support the unique cultural and academic needs of Penn students in engineering and science-related fields, fostering a space where members can share professional insights, resources, and experiences that drive career growth and success." />
+
       <Section
         title="Our Community"
         image={demographics}
-        text="Our members represent all four undergraduate schools at the
-                university: Penn Engineering, the College of Arts and Sciences,
-                The Wharton School, Penn Nursing, and students in graduate
-                programs as well. By connecting students from diverse academic
-                backgrounds, we aim to cultivate a collaborative environment
-                rooted in intellectual curiosity and shared professional goals."
+        text="Our members represent all four undergraduate schools at the university: Penn Engineering, the College of Arts and Sciences, The Wharton School, Penn Nursing, and students in graduate programs as well. By connecting students from diverse academic backgrounds, we aim to cultivate a collaborative environment rooted in intellectual curiosity and shared professional goals. You do not need to be a STEM student to join K-PEnSA!"
+        reverse={true}
+        rightSlot={
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="-ml-0 sm:-ml-4 lg:-ml-12"
+          >
+            <AnimatedSweepPie data={majors} title="Major Distribution 24-25" animationDuration={2500} />
+          </motion.div>
+        }
       />
-      <Section title="What We Do" image={event} text={whatwedo} />
-    </div>
+
+      <Section 
+        title="What We Do" 
+        image={event} 
+        text={whatwedo} 
+        rightSlot={
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="-ml-4 -mt-4 p-4 sm:-ml-6 sm:-mt-6 sm:p-6 lg:-ml-12 lg:-mt-12 lg:p-12 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden"
+          >
+            <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] flex items-center justify-center">
+              <div className="relative w-full h-full">
+                <motion.img
+                  initial={{ opacity: 0, x: 20, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  alt="K-PEnSA Events"
+                  src={event}
+                  className="w-48 h-auto sm:w-56 md:w-64 lg:w-[21rem] rounded-2xl shadow-xl transform rotate-6 absolute top-2 left-2 sm:top-3 sm:left-3 lg:top-4 lg:left-4 z-20"
+                />
+                <motion.img
+                  initial={{ opacity: 0, x: 20, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  alt="Career Panel"
+                  src={panel}
+                  className="w-48 h-auto sm:w-56 md:w-64 lg:w-96 rounded-2xl shadow-xl transform -rotate-6 absolute bottom-2 -right-4 sm:bottom-3 sm:-right-6 lg:bottom-4 lg:-right-8 z-10"
+                />
+              </div>
+            </div>
+          </motion.div>
+        }
+      />
+    </section>
   );
 }
 
@@ -103,19 +255,37 @@ interface SectionProps {
   title: string;
   image: string;
   text: string;
+  reverse?: boolean;
+  hideImage?: boolean;
+  rightSlot?: React.ReactNode;
 }
 
-const Section = ({ title, image, text }: SectionProps) => {
+const Section = ({ title, image, text, reverse = false, hideImage = false, rightSlot }: SectionProps) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const contentOrder = reverse ? "lg:order-2" : "lg:order-1";
+  const sideOrder = reverse ? "lg:order-1" : "lg:order-2";
+  const contentColSpan = rightSlot ? "" : hideImage ? "lg:col-span-2" : "";
+
   return (
-    <div className="my-24 px-4 lg:px-0 mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
-      <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-        <div className="lg:pr-4">
+    <div ref={ref} className="mt-6 mb-16 sm:mt-8 sm:mb-20 lg:mt-8 lg:mb-24 px-4 lg:px-0 mx-auto max-w-2xl lg:max-w-7xl">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-8 sm:gap-y-12 lg:gap-y-16 lg:items-start">
+        {rightSlot ? (
+          <div className={`${sideOrder}`}>{rightSlot}</div>
+        ) : !hideImage ? (
+          <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }} transition={{ duration: 0.8, delay: 0.4 }} className={`${sideOrder} -ml-4 sm:-ml-6 lg:-ml-12 mt-4 p-4 sm:p-6 lg:p-12`}>
+            <img alt="" src={image} className="w-full max-w-none rounded-xl bg-gray-900 shadow-md" />
+          </motion.div>
+        ) : null}
+
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} transition={{ duration: 0.8, delay: 0.2 }} className={`${contentOrder} lg:pr-4 lg:pt-8 ${contentColSpan}`}>
           <div className="lg:max-w-lg">
-            <h1 className="mt-2 text-pretty text-4xl font-DMSerifText font-semibold tracking-tight text-slate-700 sm:text-5xl">
+            <motion.h1 initial={{ opacity: 0, y: -20 }} animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }} transition={{ duration: 0.8 }} className="mt-2 text-pretty text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-DMSerifText font-semibold tracking-tight text-slate-700">
               {title}
-            </h1>
+            </motion.h1>
           </div>
-          <div className="max-w-xl mt-12 mb-12 lg:mb-0 text-base/7 text-gray-700 lg:max-w-lg">
+          <div className="max-w-xl mt-6 sm:mt-8 mb-8 sm:mb-10 lg:mb-0 lg:mt-8 text-base/7 text-gray-700 lg:max-w-lg">
             {text.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
@@ -123,15 +293,88 @@ const Section = ({ title, image, text }: SectionProps) => {
               </span>
             ))}
           </div>
-        </div>
-        <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:overflow-hidden">
-          <img
-            alt=""
-            src={image}
-            className="w-full max-w-none rounded-xl bg-gray-900 shadow-md"
-          />
-        </div>
+        </motion.div>
       </div>
+    </div>
+  );
+};
+
+// Animated Pie Chart Component using Recharts
+const AnimatedPieChart = () => {
+  const chartRef = useRef(null);
+  
+  const data = [
+    { name: "Pre-Health/Natural Sciences", value: 49.4, color: "#99bdf7" },
+    { name: "Engineering", value: 6.0, color: "#2f2e75" },
+    { name: "CIS/DMD", value: 26.5, color: "#9b99f7" },
+    { name: "Business/Humanities", value: 15.7, color: "#767699" },
+    { name: "Design", value: 2.4, color: "#111136" }
+  ];
+
+  const COLORS = data.map(item => item.color);
+
+  const CustomTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-2 border border-gray-200 rounded-md shadow-md">
+          <p className="font-medium text-gray-800 text-sm">{payload[0].name}</p>
+          <p className="text-gray-600 text-xs">{`${payload[0].value}%`}</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  return (
+    <div ref={chartRef} className="w-full h-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            label={({ name, cx, cy, midAngle, innerRadius, outerRadius }) => {
+              if (midAngle === undefined || innerRadius === undefined || outerRadius === undefined) {
+                return null;
+              }
+              const RADIAN = Math.PI / 180;
+              const radius = 25 + innerRadius + (outerRadius - innerRadius);
+              const x = cx + radius * Math.cos(-midAngle * RADIAN);
+              const y = cy + radius * Math.sin(-midAngle * RADIAN);
+              
+              return (
+                <text 
+                  x={x} 
+                  y={y} 
+                  fill="black" 
+                  textAnchor={x > cx ? 'start' : 'end'} 
+                  dominantBaseline="central"
+                  className="text-xs font-medium"
+                >
+                  {name}
+                </text>
+              );
+            }}
+            outerRadius={100}
+            fill="#8884d8"
+            dataKey="value"
+            stroke="none"
+            strokeWidth={0}
+            animationBegin={0}
+            animationDuration={1500}
+            animationEasing="ease-out"
+          >
+            {data.map((entry, index) => (
+              <Cell 
+                key={`cell-${index}`} 
+                fill={COLORS[index % COLORS.length]} 
+              />
+            ))}
+          </Pie>
+          <Tooltip content={<CustomTooltip />} />
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 };
