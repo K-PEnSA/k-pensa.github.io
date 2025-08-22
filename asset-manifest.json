@@ -1,31 +1,38 @@
 {
   "files": {
-    "main.css": "/static/css/main.d5a0412d.css",
-    "main.js": "/static/js/main.bf08a40b.js",
-    "static/js/453.8138dc98.chunk.js": "/static/js/453.8138dc98.chunk.js",
-    "static/media/KSEA1.png": "/static/media/KSEA1.a3561d10182d50a4baae.png",
-    "static/media/hajoon-new.jpg": "/static/media/hajoon-new.c1644b2b8d02442a9e7c.jpg",
+    "main.css": "/static/css/main.239f3843.css",
+    "main.js": "/static/js/main.29d1efaf.js",
+    "static/js/453.642c11a8.chunk.js": "/static/js/453.642c11a8.chunk.js",
     "static/media/skating.jpg": "/static/media/skating.69e6c1201f9fc480c5ac.jpg",
     "static/media/kseaYG.svg": "/static/media/kseaYG.e99b5f8e7eedc148c975f9094bbe5abc.svg",
     "static/media/Joanna.jpg": "/static/media/Joanna.1a856bff832aabcdc809.jpg",
     "static/media/Brianna.jpg": "/static/media/Brianna.2aa8b4b2104005a040f2.jpg",
-    "static/media/JoshL.jpg": "/static/media/JoshL.7f4b2b47b69143044859.jpg",
-    "static/media/Seoyeon.jpg": "/static/media/Seoyeon.6942206e713c942588c5.jpg",
+    "static/media/ksea-1.png": "/static/media/ksea-1.78c993ec1b15f47f16f6.png",
     "static/media/Monica.jpg": "/static/media/Monica.155a4a4b78ec81ecd60c.jpg",
+    "static/media/study-session.jpg": "/static/media/study-session.93e7a2d4f580a4a6b841.jpg",
+    "static/media/logo-copy.png": "/static/media/logo-copy.f629f1787eb1d60fc821.png",
+    "static/media/munch-and-mingle.jpg": "/static/media/munch-and-mingle.64a30f84ac0ff18df053.jpg",
     "static/media/Jaimie.jpg": "/static/media/Jaimie.0c491dc49624e46706d5.jpg",
+    "static/media/penn-med-panel.jpg": "/static/media/penn-med-panel.ccbfa2b13aeb74f21be6.jpg",
+    "static/media/ksea-2.jpg": "/static/media/ksea-2.df2660483bba88c43522.jpg",
+    "static/media/career-panel.jpg": "/static/media/career-panel.da85038bba4993c2299a.jpg",
+    "static/media/kickoff-social.jpg": "/static/media/kickoff-social.3e16a7ac2cac660431ff.jpg",
+    "static/media/ghost-robo-info-session.jpg": "/static/media/ghost-robo-info-session.f8fe7364c8e73e1aefb9.jpg",
+    "static/media/adv-reg-lunch.jpg": "/static/media/adv-reg-lunch.6acb03a4094e035805df.jpg",
+    "static/media/ksea-logo.png": "/static/media/ksea-logo.756a1ec10f633ed93cb9.png",
     "static/media/Heidi.jpg": "/static/media/Heidi.f354865791bfe637c792.jpg",
     "static/media/joshhong.jpg": "/static/media/joshhong.c83ccdfcb03ca59cd3cb.jpg",
     "static/media/demographics.png": "/static/media/demographics.fc8405f4ccafe8ea4a27.png",
+    "static/media/panel.jpg": "/static/media/panel.dccfa092428dfecb9251.jpg",
     "static/media/fbmainbanner.jpg": "/static/media/fbmainbanner.0ab2ec8592a6f5fe0d24.jpg",
-    "static/media/ksea-logo.png": "/static/media/ksea-logo.d118710ee893d9649a31.png",
     "static/media/logo.svg": "/static/media/logo.c448ed3a6166a6ee3b3116579d22e531.svg",
     "index.html": "/index.html",
-    "main.d5a0412d.css.map": "/static/css/main.d5a0412d.css.map",
-    "main.bf08a40b.js.map": "/static/js/main.bf08a40b.js.map",
-    "453.8138dc98.chunk.js.map": "/static/js/453.8138dc98.chunk.js.map"
+    "main.239f3843.css.map": "/static/css/main.239f3843.css.map",
+    "main.29d1efaf.js.map": "/static/js/main.29d1efaf.js.map",
+    "453.642c11a8.chunk.js.map": "/static/js/453.642c11a8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d5a0412d.css",
-    "static/js/main.bf08a40b.js"
+    "static/css/main.239f3843.css",
+    "static/js/main.29d1efaf.js"
   ]
 }
