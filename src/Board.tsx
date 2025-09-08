@@ -10,7 +10,7 @@ import tbdImage from "./assets/boards/placeholder.jpg";
 import { motion, useInView } from "framer-motion";
 
 const JoinUsButton: React.FC = () => {
-  const [isActive, setIsActive] = useState(false); // Button activation state
+  const [isActive] = useState(true); // Button is active
   const [isTooltipVisible, setTooltipVisible] = useState(false); // Tooltip visibility state
 
   return (
@@ -19,16 +19,15 @@ const JoinUsButton: React.FC = () => {
       <a
         href={
           isActive
-            ? "https://docs.google.com/forms/d/e/1FAIpQLScZBjyvGFNOOhyTszx3tP_h--rjUrwrXml1LbCI4uNxiS6Vpg/viewform"
+            ? "https://docs.google.com/forms/d/e/1FAIpQLSe4bOPsvW_lVJ02UFlgCqyNcDdmkEP_7WHb1ygXBlWpIw6QFw/viewform?usp=header"
             : undefined
         }
         target={isActive ? "_blank" : undefined}
         rel={isActive ? "noopener noreferrer" : undefined}
         onMouseEnter={() => {
-          setTooltipVisible(true);
+          if (!isActive) setTooltipVisible(true);
         }}
         onMouseLeave={() => {
-          setIsActive(false); // Optionally reset isActive on mouse leave
           setTooltipVisible(false);
         }}
         className={`mx-auto inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg 
