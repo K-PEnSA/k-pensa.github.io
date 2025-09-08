@@ -100,7 +100,7 @@ const Hero = () => {
             className="flex justify-center"
           >
             <a
-              href="https://pennclubs.com/club/korea-penn-engineers-and-scientists-association"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSe8a-Y0WvsH0Gf5laTamkoapMDFSzVfwVmbuJm8hj-7wyJq0A/viewform?usp=header"
               target="_blank"
               className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-pensa-blue-70 hover:bg-pensa-blue-100 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
@@ -380,7 +380,7 @@ const AboutSection = () => {
               Build lasting friendships, advance your career, and be part of something special.
             </motion.p>
             <motion.a
-              href="https://pennclubs.com/club/korea-penn-engineers-and-scientists-association"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSe8a-Y0WvsH0Gf5laTamkoapMDFSzVfwVmbuJm8hj-7wyJq0A/viewform?usp=header"
               target="_blank"
               className="inline-flex justify-center items-center py-4 px-8 text-lg font-medium text-center text-white rounded-lg bg-pensa-blue-70 hover:bg-pensa-blue-100 transition-all duration-300 shadow-lg hover:shadow-xl"
               initial={{ opacity: 0 }}
