@@ -6,11 +6,14 @@ import monicaImage from "./assets/boards/Monica.jpg";
 import jaimieImage from "./assets/boards/Jaimie.jpg";
 import heidiImage from "./assets/boards/Heidi.jpg";
 import joshhongImage from "./assets/boards/joshhong.jpg";
+import bominImage from "./assets/boards/Bomin.jpg";
+import christinaImage from "./assets/boards/Christina.jpg";
+import lukeImage from "./assets/boards/Luke.jpg";
 import tbdImage from "./assets/boards/placeholder.jpg";
 import { motion, useInView } from "framer-motion";
 
 const JoinUsButton: React.FC = () => {
-  const [isActive] = useState(true); // Button is active
+  const [isActive] = useState(false); // Button is active
   const [isTooltipVisible, setTooltipVisible] = useState(false); // Tooltip visibility state
 
   return (
@@ -106,22 +109,22 @@ const boardMembers = [
   },
 
   {
-    name: "TBD",
+    name: "Christina Cho",
     position: "Marketing Chair",
-    image: tbdImage,
-    description: "--",
+    image: christinaImage,
+    description: "Neuroscience",
   },
   {
-    name: "TBD",
+    name: "Bomin Kwon",
     position: "Freshman Rep",
-    image: tbdImage,
-    description: "--",
+    image: bominImage,
+    description: "Chemical and Biomolecular Engineering",
   },
   {
-    name: "TBD",
+    name: "Luke Jun",
     position: "Freshman Rep",
-    image: tbdImage,
-    description: "--",
+    image: lukeImage,
+    description: "Biology",
   },
 ];
 
@@ -203,7 +206,7 @@ const BoardMemberCard = ({ member, index }: { member: any; index: number }) => {
       className="text-start p-5"
     >
       <motion.img
-        className="mx-auto mb-4 w-96 h-96 object-cover saturate-50 hover:saturate-100 transition-all duration-300"
+        className="mx-auto mb-4 w-96 h-96 object-cover transition-all duration-300"
         src={member.image}
         alt={`${member.name} Avatar`}
         initial={{ opacity: 0 }}
