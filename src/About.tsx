@@ -168,11 +168,11 @@ function AnimatedSweepPie({
 
 export default function About() {
   const majors: Slice[] = [
-    { name: "Pre-Health/Natural Sciences", value: 49.4 },
-    { name: "Engineering", value: 6.0 },
-    { name: "CIS/DMD", value: 26.5 },
-    { name: "Business/Humanities", value: 15.7 },
-    { name: "Design", value: 2.4 },
+    { name: "Pre-Health/Natural Sciences", value: 54.5 },
+    { name: "Engineering", value: 13.2 },
+    { name: "CIS/CMPE/DMD", value: 14.7 },
+    { name: "Business/Humanities", value: 17.6 },
+    //{ name: "Design", value: 0.0 },
   ];
 
   return (
@@ -205,7 +205,7 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="-ml-0 sm:-ml-4 lg:-ml-12"
           >
-            <AnimatedSweepPie data={majors} title="Major Distribution 24-25" animationDuration={2500} />
+            <AnimatedSweepPie data={majors} title="Major Distribution 25-26" animationDuration={2500} />
           </motion.div>
         }
       />
@@ -304,11 +304,11 @@ const AnimatedPieChart = () => {
   const chartRef = useRef(null);
   
   const data = [
-    { name: "Pre-Health/Natural Sciences", value: 49.4, color: "#99bdf7" },
-    { name: "Engineering", value: 6.0, color: "#2f2e75" },
-    { name: "CIS/DMD", value: 26.5, color: "#9b99f7" },
-    { name: "Business/Humanities", value: 15.7, color: "#767699" },
-    { name: "Design", value: 2.4, color: "#111136" }
+    { name: "Pre-Health/Natural Sciences", value: 54.4, color: "#99bdf7" },
+    { name: "Engineering", value: 13.2, color: "#2f2e75" },
+    { name: "CIS/CMPE/DMD", value: 14.7, color: "#9b99f7" },
+    { name: "Business/Humanities", value: 17.6, color: "#767699" },
+    { name: "Design", value: 0.0, color: "#111136" }
   ];
 
   const COLORS = data.map(item => item.color);
