@@ -1,22 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-import advRegLunch from "./assets/events/adv-reg-lunch.jpg";
-import careerPanel from "./assets/events/career-panel.jpg";
-import ghostRoboInfoSession from "./assets/events/ghost-robo-info-session.jpg";
-import kickoffSocial from "./assets/events/kickoff-social.jpg";
-import munchAndMingle from "./assets/events/munch-and-mingle.jpg";
-import pennMedPanel from "./assets/events/penn-med-panel.jpg";
-import studySession from "./assets/events/study-session.jpg";
+import advRegLunch from "./assets/events/adv-reg-lunch.png";
+import upperPanel from "./assets/events/upper-panel.png";
+import eoySocial from "./assets/events/eoy-social.png";
+import fallGBM from "./assets/events/fall-gbm.png";
+import munchAndMingle from "./assets/events/munch-mingle.png";
+import profDinner from "./assets/events/prof-dinner.png";
+import studySession from "./assets/events/study-sesh.png";
 
 const eventImages = [
-  { src: advRegLunch, alt: "Advanced Registration Lunch" },
-  { src: careerPanel, alt: "Career Panel" },
-  { src: ghostRoboInfoSession, alt: "Ghost Robotics Info Session" },
-  { src: kickoffSocial, alt: "Kickoff Social" },
+  { src: eoySocial, alt: "EOY Social" },
+  { src: profDinner, alt: "Dinner with Professors" },
   { src: munchAndMingle, alt: "Munch and Mingle" },
-  { src: pennMedPanel, alt: "Penn Med Panel" },
+  { src: advRegLunch, alt: "Advanced Registration Lunch" },
   { src: studySession, alt: "Study Session" },
+  { src: upperPanel, alt: "Career Panel" },
+  { src: fallGBM, alt: "Fall GBM" },
 ];
 
 const EventCarousel = () => {
@@ -26,39 +26,36 @@ const EventCarousel = () => {
   const [current, setCurrent] = useState(totalUnique);
   const [isAnimating, setIsAnimating] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
-  const [stepPx, setStepPx] = useState(344); 
-  const [cardWidthPx, setCardWidthPx] = useState(320);
+  const [stepPx, setStepPx] = useState(0);
   const [viewportWidth, setViewportWidth] = useState<number | null>(null);
   const [visibleCount, setVisibleCount] = useState(3);
 
   const trackRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const measure = () => {
-      const track = trackRef.current;
-      if (!track || track.children.length < 2) return;
-      const first = track.children[0] as HTMLElement;
-      const second = track.children[1] as HTMLElement;
-      const firstRect = first.getBoundingClientRect();
-      const secondRect = second.getBoundingClientRect();
-      const delta = Math.abs(secondRect.left - firstRect.left);
-      if (delta > 0) setStepPx(delta);
-      if (firstRect.width > 0) setCardWidthPx(firstRect.width);
+  const GAP = 24;
 
-      const gapPx = Math.max(delta - firstRect.width, 0);
-      const widthPx = firstRect.width * visibleCount + gapPx * (visibleCount - 1);
-      if (widthPx > 0) setViewportWidth(widthPx);
-    };
+useEffect(() => {
+  const measure = () => {
+    const track = trackRef.current;
+    if (!track || track.children.length < 1) return;
 
-    measure();
-    const ro = new ResizeObserver(measure);
-    if (trackRef.current) ro.observe(trackRef.current);
-    window.addEventListener("resize", measure);
-    return () => {
-      window.removeEventListener("resize", measure);
-      ro.disconnect();
-    };
-  }, [visibleCount]);
+    const first = track.children[0] as HTMLElement;
+    const { width } = first.getBoundingClientRect();
+    if (width <= 0) return;
+
+    const step = width + GAP;
+    setStepPx(step);
+
+    const viewport = width * visibleCount + GAP * (visibleCount - 1);
+    setViewportWidth(viewport);
+  };
+
+  measure();
+  const ro = new ResizeObserver(measure);
+  if (trackRef.current) ro.observe(trackRef.current);
+
+  return () => ro.disconnect();
+}, [visibleCount]);
 
   useEffect(() => {
     const computeVisible = () => {

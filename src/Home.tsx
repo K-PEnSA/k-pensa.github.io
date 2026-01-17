@@ -56,14 +56,14 @@ const Hero = () => {
 
   return (
     <section ref={ref} className="relative isolate overflow-hidden h-screen flex flex-col items-center justify-center">
-      <motion.div 
+      <motion.div
         style={{ y: backgroundY }}
         className="full-page-gradient absolute inset-0 w-full h-[120%]"
       />
-      
+
 
       {/* Main content with parallax */}
-      <motion.div 
+      <motion.div
         style={{ y: textY }}
         className="relative z-10 w-full flex flex-col items-center justify-center px-6"
       >
@@ -71,21 +71,23 @@ const Hero = () => {
           <motion.img
             src={logoCopy}
             alt="K-PEnSA logo"
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="-mt-9 md:-mt-11 mb-6 w-16 h-16 object-contain"
           />
+
           <motion.h1
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="mb-5 bg-gradient-to-r from-pensa-blue-70 via-pensa-blue-100 to-pensa-blue-70 bg-[length:200%_auto] bg-clip-text text-6xl font-bold font-DMSerifText text-transparent text-center"
+            className="mb-5 bg-gradient-to-r from-pensa-blue-70 via-pensa-blue-100 to-pensa-blue-70 bg-[length:200%_auto] bg-clip-text text-6xl font-extrabold text-transparent text-center"
           >
             Welcome to K-PEnSA
           </motion.h1>
+
           <motion.p
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
             className="mb-9 text-lg text-slate-700 lg:text-xl font-medium text-center max-w-none md:whitespace-nowrap"
@@ -93,10 +95,11 @@ const Hero = () => {
             Korea-Penn Engineers and Scientists Association | Penn Young Generation
             Group of KSEA
           </motion.p>
+
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 1 }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
             className="flex justify-center"
           >
             <a
@@ -124,9 +127,9 @@ const Hero = () => {
           </motion.div>
         </div>
       </motion.div>
-      
+
       {/* Scroll indicator */}
-      <motion.div 
+      <motion.div
         style={{ y: logoY }}
         className="absolute bottom-8 left-0 right-0 z-20 flex justify-center"
         initial={{ opacity: 0 }}
@@ -173,30 +176,30 @@ const AboutSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.h2 
-            className="text-4xl font-bold text-slate-800 mb-6 font-DMSerifText"
-            whileInView={{ 
-              backgroundPosition: ["0% 50%", "100% 50%"] 
+          <motion.h2
+            className="text-4xl font-bold text-slate-800 mb-6"
+            whileInView={{
+              backgroundPosition: ["0% 50%", "100% 50%"]
             }}
             transition={{ duration: 2, ease: "easeInOut" }}
           >
             Who We Are
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            Founded in 2015, Korea-Penn Engineers and Scientists Association (K-PEnSA) 
-            is a vibrant community at the University of Pennsylvania that brings together 
+            Founded in 2015, Korea-Penn Engineers and Scientists Association (K-PEnSA)
+            is a vibrant community at the University of Pennsylvania that brings together
             students at the crossroads of academics, career development, and social connection.
           </motion.p>
         </motion.div>
 
         {/* Stats */}
-        <motion.div 
+        <motion.div
           style={{ y: statsY }}
           className="grid md:grid-cols-3 gap-8 mb-16"
         >
@@ -208,7 +211,7 @@ const AboutSection = () => {
             viewport={{ once: true }}
             className="text-center p-6 rounded-xl bg-gradient-to-br from-white to-slate-50 shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <motion.div 
+            <motion.div
               className="text-4xl font-bold text-pensa-blue-70 mb-2"
               whileInView={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -226,7 +229,7 @@ const AboutSection = () => {
             viewport={{ once: true }}
             className="text-center p-6 rounded-xl bg-gradient-to-br from-white to-slate-50 shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <motion.div 
+            <motion.div
               className="text-4xl font-bold text-pensa-blue-70 mb-2"
               whileInView={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -244,7 +247,7 @@ const AboutSection = () => {
             viewport={{ once: true }}
             className="text-center p-6 rounded-xl bg-gradient-to-br from-white to-slate-50 shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <motion.div 
+            <motion.div
               className="text-4xl font-bold text-pensa-blue-70 mb-2"
               whileInView={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 0.6, delay: 0.7 }}
@@ -321,16 +324,16 @@ const AboutSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.h3 
-            className="text-4xl font-bold text-slate-800 mb-6 font-DMSerifText"
-            whileInView={{ 
-              backgroundPosition: ["0% 50%", "100% 50%"] 
+          <motion.h3
+            className="text-4xl font-bold text-slate-800 mb-6"
+            whileInView={{
+              backgroundPosition: ["0% 50%", "100% 50%"]
             }}
             transition={{ duration: 2, ease: "easeInOut" }}
           >
             Past Events
           </motion.h3>
-          <motion.p 
+          <motion.p
             className="text-lg text-slate-600 max-w-4xl mx-auto leading-relaxed mb-12"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -339,7 +342,7 @@ const AboutSection = () => {
           >
             Browse highlights from recent semesters—including career panels, info sessions, socials, and study sessions.
           </motion.p>
-          
+
           {/* Event Carousel */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -360,8 +363,8 @@ const AboutSection = () => {
         >
 
           <div className="max-w-4xl mx-auto text-center relative z-10">
-            <motion.h2 
-              className="text-4xl font-bold text-slate-800 mb-6 font-DMSerifText"
+            <motion.h2
+              className="text-4xl font-bold text-slate-800 mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -369,14 +372,14 @@ const AboutSection = () => {
             >
               Ready to Join Our Community?
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-xl text-slate-600 mb-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              Connect with fellow Korean Penn students in engineering and science. 
+              Connect with fellow Korean Penn students in engineering and science.
               Build lasting friendships, advance your career, and be part of something special.
             </motion.p>
             <motion.a

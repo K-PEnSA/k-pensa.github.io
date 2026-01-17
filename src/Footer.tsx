@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
           
           {/* Copyright */}
           <span className="text-sm text-gray-500 text-center">
-            © 2025 K-PEnSA All Rights Reserved.
+            © 2026 K-PEnSA All Rights Reserved.
           </span>
 
           {/* Social Icons */}
