@@ -49,7 +49,7 @@ module.exports = {
       },
 
       fontFamily: {
-        DMSerifText: ["DM Serif Text", "serif"],
+        Unna: ["Unna", "serif"],
       },
     },
   },

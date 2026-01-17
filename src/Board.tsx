@@ -9,8 +9,23 @@ import joshhongImage from "./assets/boards/joshhong.jpg";
 import bominImage from "./assets/boards/Bomin.jpg";
 import christinaImage from "./assets/boards/Christina.jpg";
 import lukeImage from "./assets/boards/Luke.jpg";
-import tbdImage from "./assets/boards/placeholder.jpg";
 import { motion, useInView } from "framer-motion";
+
+const introContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.05,
+      staggerChildren: 0.20,
+    },
+  },
+};
+
+const introItem = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 
 const JoinUsButton: React.FC = () => {
   const [isActive] = useState(false); // Button is active
@@ -107,7 +122,6 @@ const boardMembers = [
     image: jaimieImage,
     description: "Biology",
   },
-
   {
     name: "Christina Cho",
     position: "Marketing Chair",
@@ -133,51 +147,46 @@ const Board = () => {
     <section className="relative py-24">
       <div className="subtle-gradient-bg fixed inset-0 -z-10" />
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-12 lg:px-6">
-        <div className="mx-auto max-w-screen-lg text-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 text-6xl font-DMSerifText tracking-tight font-extrabold text-slate-700"
+        <motion.div
+          className="mx-auto max-w-screen-lg text-center"
+          variants={introContainer}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.h2
+            variants={introItem}
+            className="mb-4 text-6xl tracking-tight font-extrabold text-slate-700"
           >
             Meet the Board
           </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+
+          <motion.p
+            variants={introItem}
             className="font-light text-gray-500 sm:text-xl"
           >
             Behind all of our events stands a dedicated K-PEnSA family.
           </motion.p>
-        </div>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="py-4 px-4 mx-auto text-center max-w-screen-l lg:py-8 lg:px-6"
-        >
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-base/7 text-gray-700"
+
+          <motion.div
+            variants={introItem}
+            className="py-4 px-4 mx-auto text-center max-w-screen-l lg:py-8 lg:px-6"
           >
-            The K-PEnSA board functions as the governing body of K-PEnSA. Our
-            community wouldn't exist without the hard work and commitment of our
-            board members.
-            <br />
-            The board consists of 8 different positions with new board members being
-            chosen from aspiring and passionate general body and incoming members in the beginning of Fall
-            semesters.
-          </motion.p>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex justify-center items-center my-16"
-          >
-            <JoinUsButton />
+            <p className="text-base/7 text-gray-700">
+              The K-PEnSA board functions as the governing body of K-PEnSA. Our
+              community wouldn't exist without the hard work and commitment of
+              our board members.
+              <br />
+              The board consists of 8 different positions with new board members
+              being chosen from aspiring and passionate general body and
+              incoming members in the beginning of Fall semesters.
+            </p>
+
+            <motion.div
+              variants={introItem}
+              className="flex justify-center items-center my-16"
+            >
+              <JoinUsButton />
+            </motion.div>
           </motion.div>
         </motion.div>
 
@@ -191,17 +200,28 @@ const Board = () => {
   );
 };
 
-// New component for animated board member cards
-const BoardMemberCard = ({ member, index }: { member: any; index: number }) => {
+const BoardMemberCard = ({
+  member,
+  index,
+}: {
+  member: any;
+  index: number;
+}) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const baseDelay = index * 0.06;
+
   return (
-    <motion.div 
+    <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
-              transition={{ duration: 0.6, delay: index < 3 ? index * 0.1 : (index - 3) * 0.02 + 0.3 }}
+      initial={{ opacity: 0, y: 26, scale: 0.96 }}
+      animate={
+        isInView
+          ? { opacity: 1, y: 0, scale: 1 }
+          : { opacity: 0, y: 26, scale: 0.96 }
+      }
+      transition={{ duration: 0.45, delay: baseDelay }}
       whileHover={{ y: -5, scale: 1.02 }}
       className="text-start p-5"
     >
@@ -211,28 +231,31 @@ const BoardMemberCard = ({ member, index }: { member: any; index: number }) => {
         alt={`${member.name} Avatar`}
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.6, delay: index < 3 ? index * 0.1 + 0.3 : (index - 3) * 0.02 + 0.6 }}
+        transition={{ duration: 0.35, delay: baseDelay + 0.1 }}
       />
-      <motion.h3 
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.6, delay: index < 3 ? index * 0.1 + 0.1 : (index - 3) * 0.02 + 0.4 }}
-        className="mt-2 mb-2 text-3xl font-bold tracking-tight font-DMSerifText text-slate-700"
+
+      <motion.h3
+        initial={{ opacity: 0, y: 14 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+        transition={{ duration: 0.4, delay: baseDelay + 0.16 }}
+        className="mt-2 mb-2 text-3xl font-bold tracking-tight text-slate-700"
       >
         <p>{member.name}</p>
       </motion.h3>
-      <motion.h4 
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.6, delay: index < 3 ? index * 0.1 + 0.2 : (index - 3) * 0.02 + 0.5 }}
+
+      <motion.h4
+        initial={{ opacity: 0, y: 14 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+        transition={{ duration: 0.4, delay: baseDelay + 0.22 }}
         className="font-light text-xl text-gray-600"
       >
         {member.position}
       </motion.h4>
-      <motion.p 
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.6, delay: index < 3 ? index * 0.1 + 0.3 : (index - 3) * 0.02 + 0.6 }}
+
+      <motion.p
+        initial={{ opacity: 0, y: 14 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+        transition={{ duration: 0.4, delay: baseDelay + 0.28 }}
         className="mt-2 font-light text-slate-500"
       >
         {member.description}
